@@ -1,0 +1,509 @@
+$people-tag: false;
+
+.people-sort {
+  padding: 10px 20px;
+  background-color: $color-grey-l2;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+
+  a {
+    text-transform: uppercase;
+    font-size: $font-size-xxs;
+    font-weight: bold;
+
+    position: relative;
+    display: inline-block;
+    width: 100px;
+
+    @media (min-width: 1200px) {
+      &:first-child  { margin-left: 80px; }
+      &:nth-child(2) { margin-left: 270px;  }
+      &:nth-child(3)   { margin-left: 35px; }
+    }
+
+    @media (max-width: 1200px) {
+      &:first-child  { margin-left: 80px; }
+      &:nth-child(2) { margin-left: 160px; }
+      &:nth-child(3)  { margin-left: 15px; }
+    }
+
+    @media (max-width: 1080px) {
+      &:nth-child(2) { margin-left: 80px; }
+      &:nth-child(3)   { margin-left: 17px; }
+    }
+
+    @media (max-width: 850px) {
+      &:nth-child(2) { margin-left: 130px; }
+    }
+  }
+} // .people-sort
+
+// People
+//---------------------------------------------------
+
+.people {
+  background-color: $color-grey-l1;
+
+  @media (min-width: 768px) {
+
+    height: calc(100% - 162px); // - 120px header & people-sort
+    overflow-y: auto;
+    position: relative;
+  }
+
+  &.hide-inactive {
+
+    .people-tag.inactive {
+      display: none;
+    }
+  }
+
+  .panel-heading {
+    padding: 0;
+  }
+
+  .people-tag {
+    margin: 20px;
+    border: 1px solid $color-grey-l2;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+
+    .spinner-icon {
+      display: none;
+    }
+    // People info
+    .people-info {
+      background-color: white;
+      border-left: 3px solid transparent;
+      height: 80px;
+      padding: 20px 20px 20px 17px;
+      overflow: hidden;
+      position: relative; // refer to .menu-btn
+
+      .avatar, .name, .sent, .received, .btn { float: left; }
+
+      .name {
+        display: table;
+        margin: 0 20px;
+        height: 40px;
+
+        p, strong {
+          display: table-cell;
+          font-size: $font-size-xs;
+          vertical-align: middle;
+          @include wrap-text();
+        }
+      }
+
+      .sent, .received {
+        position: relative;
+        top: -10px;
+        width: 110px;
+        text-align: center;
+        color: $color-navy-l2;
+        font-family: $font-family-demo;
+        font-size: 30px;
+        font-weight: 100;
+        padding: 10px 30px 18px;
+        border-radius: $border-radius-lg $border-radius-lg 0 0;
+
+        &:hover { background-color: $color-navy-l1; }
+
+        &.active  {
+          color: $color-green !important;
+          background-color: white;
+          cursor: default;
+        }
+
+        &.disabled {
+          color: rgba(0,0,0,.2) !important;
+          &:hover { background-color: transparent; }
+        }
+
+      }
+
+      .btn {
+        margin: 5px 0;
+        width: 120px;
+        max-width: 120px;
+        @include opacity(0);
+      }
+
+      .icon-info {
+        float: right;
+        margin-right: 50px;
+        padding: 10px;
+        top: 3px;
+        color: $color-navy-l1;
+        font-size: $font-size-base;
+        @include  opacity(0);
+
+        &:hover { color: white; }
+      }
+
+      // Transform icon
+      .menu-btn {
+        position: absolute;
+        top: 38px;
+        right: 30px;
+        width: 15px;
+        height: 15px;
+
+        &:before,
+        &:after {
+          display: block;
+          position: relative;
+          background-color: $color-navy-l2;
+          content: '';
+          height: 3px;
+          @include transition(all .15s linear);
+        }
+
+        &:before {
+          @include transform(rotate(45deg));
+        }
+
+        &:after {
+          @include transform(rotate(-45deg));
+          left: 9px;
+          bottom: 3px;
+        }
+
+        &.reversed {
+          &:before { @include transform(rotate(-45deg)); }
+          &:after  { @include transform(rotate(45deg));  }
+        }
+      }
+
+      // Active State
+      &.active, &:hover {
+        background-color: $color-navy-l2;
+
+        .avatar { @include box-shadow(0 0 0 4px rgba(0, 0, 0, .2)); }
+
+        .name p , .name strong,
+        .sent, .received { color: white; }
+
+        .btn, .icon-info { @include opacity(1); }
+
+        .menu-btn {
+          &:before,
+          &:after { background-color: white; }
+        }
+      }
+
+    } // .people-info
+
+    // People files - Accordion
+    .people-files {
+      background-color: white;
+
+      // Fixed accordion effect while expdanding + create scroll-bar
+      max-height: 500px;
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      > .tab-pane { display: none; }
+      @media (min-width: 768px) {
+        ul.nav-tabs {
+          display: none;
+        }
+      }
+
+      > .active { display: block; }
+
+      // Hide scrollbar while expanding
+      &.collapsing { overflow-y: hidden; }
+
+      // <section>
+      section {
+        display: none;
+        text-align: center;
+
+        .avatar {
+          margin: 20px auto 0;
+        }
+
+        .info {
+          font-size: $font-size-xs;
+          @include wrap-text();
+
+          strong {
+            display: block;
+            font-size: $font-size-base + 4;
+            font-weight: 200;
+          }
+        }
+
+        // Tab Style
+        .nav-tabs {
+          margin-top: 10px;
+          border-bottom: none;
+
+          li {
+            width: 50%;
+            padding: 0;
+            margin-bottom: 0;
+            background-color: $color-grey-l2;
+
+            a {
+              border-bottom: none;
+              padding: 10px;
+            }
+
+            &.active {
+              background-color: $color-navy-l1;
+
+              a { color: white; }
+
+              &:before1 {
+                content: "▾";
+                font-size: 20px;
+                color: $color-navy-l1;
+                position: absolute;
+                bottom: -14px;
+                left: 50%;
+                margin-left: -7px;
+              }
+            }
+          }
+        } // <ul>
+
+      } // <section>
+
+      // table
+      .list-view {
+
+        tr {
+
+          td {
+            border-bottom: 1px solid #eee;
+          }
+
+          &:nth-child(odd) {
+            td {
+              background-color: transparent;
+            }
+          }
+
+          &:hover {
+            td {
+              background-color: transparent;
+            }
+          }
+
+        }
+      }
+
+    } // .people-files
+
+    // Disabled State
+    &.disabled {
+
+      .people-info {
+        @include disabled();
+        border-left-color: $color-warning;
+        background-color: inherit;
+
+        .name p , .name strong { color: $color-grey-l4; }
+
+        .avatar { @include box-shadow(none) }
+
+        .menu-btn, .icon-info { display: none; }
+
+        .spinner-icon {
+          display: block;
+          float: right;
+          margin-top: 10px;
+        }
+      }
+    }
+
+
+    // Media Queries
+    //---------------------------------------------------
+
+    @media (min-width: 1200px) {
+
+      .name {
+        p, strong { width: 300px; max-width: 300px; }
+      }
+
+      .sent, .received { margin: 0 20px; }
+    }
+
+    @media (max-width: 1200px) {
+
+      .name {
+        p, strong { width: 200px; max-width: 200px; }
+      }
+
+      .sent, .received { margin: 0 10px; }
+    }
+
+    @media (max-width: 1080px) {
+
+      .name {
+        p, strong { width: 120px; max-width: 120px; }
+      }
+    }
+
+    @media (max-width: 850px) {
+
+      .name {
+        p, strong { width: 170px; max-width: 170px; }
+      }
+
+      .btn { display: none; }
+    }
+
+    @media (max-width: 767px) {
+      margin: 0;
+      border: none;
+      border-bottom: 1px solid #ddd;
+      border-radius: 0;
+
+      .people-info {
+
+        .name strong { font-size: $font-size-base; }
+
+        .sent, .received, .btn, .menu-btn  { display: none; }
+
+        .icon-info { font-size: 25px; @include opacity(.8); margin-right: 0; padding-right: 0; top: 1px; }
+
+        &.active, &:hover {
+          .avatar { @include box-shadow(none); }
+        }
+
+      }
+
+      // off-canvas auto transform
+      .people-files {
+        z-index: 3;
+        position: fixed;
+        top: 54px;
+        width: 100%;
+        height: calc(100% - 54px);
+        max-height: none;
+
+        section { display: block; }
+
+        .tab-pane { height: calc(100% - 177px); } // section = 176px
+
+        // override bootstrap accordion effect
+        &.collapsing {
+          top: 100%;
+          min-height: 100%;
+          @include animation(animCollapsePanelDown .5s cubic-bezier(0.7,0,0.3,1) forwards);
+        }
+
+        &.in {
+          @include animation(animExpandPanelUp .5s cubic-bezier(0.7,0,0.3,1) forwards);
+        }
+      }
+    }
+
+    //---------------------------------------------------
+
+  } // .people-tag
+
+} // .people
+
+.people-files {
+  .filename, .sentby {
+    max-width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: break-word;
+    vertical-align: bottom;
+  }
+}
+
+.sent-file-details {
+  .filename {
+    max-width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: break-word;
+    vertical-align: bottom;
+  }
+}
+
+.mobile-avatar-container {
+  display: none;
+}
+
+.off-canvas-mask.peope-list {
+  display: none;
+}
+
+@media (max-width: 1075px) and (min-width: 768px) {
+  .library.people-search header .input-group {
+    margin-top: 0;
+    margin-right: 80px;
+  }
+}
+
+@media (max-width: 767px) {
+  .nav .nav-tabs {
+    height: 40px;
+  }
+
+  .people .people-tag .people-files {
+    height: 100%;
+    padding-top: 54px;
+    z-index: 4;
+    top: 0;
+
+    div[type='tabs'] {
+      height: calc(100% - 190px);
+      overflow: hidden;
+
+      .tab-content {
+        height: calc(100% - 40px);
+        overflow-y: auto;
+      }
+    }
+  }
+
+  .mobile-avatar-container {
+    display: block;
+    position: relative;
+    padding-top: 20px;
+    width: 360px;
+    margin: 0 auto;
+    text-align: center;
+    height: 190px;
+
+    .avatar.lg {
+      margin-left: -50px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .people .people-tag .name p, .people .people-tag .name strong {
+    width: 100%;
+    max-width: 100%;
+
+    display: block;
+  }
+
+  .people .people-tag .name p {
+    margin-bottom: 20px;
+  }
+
+  .off-canvas-mask.peope-list {
+    display: block;
+    height: 54px;
+    opacity: 1;
+    top: 0;
+  }
+}

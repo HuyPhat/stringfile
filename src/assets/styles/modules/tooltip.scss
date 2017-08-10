@@ -1,0 +1,41 @@
+.tooltip {
+
+  &.in {
+    opacity: 1;
+  }
+  &.top {
+    padding-bottom: 12px;
+
+    .tooltip-arrow {
+      border-top-color: $color-navy-l1;
+      border-width: 4px 4px 0;
+      margin: 0 0 8px -4px;
+    }
+  }
+  &.right .tooltip-arrow {
+    border-right-color: $color-navy-l1;
+    border-width: 4px 4px 4px 0;
+    margin: -4px 0 0 1px;
+  }
+  &.bottom {
+    padding-top: 12px;
+
+    .tooltip-arrow {
+      border-bottom-color: $color-navy-l1;
+      border-width: 0 4px 4px;
+      margin: 8px 0 0 -4px;
+    }
+  }
+  &.left .tooltip-arrow {
+    border-left-color: $color-navy-l1;
+    border-width: 4px 0 4px 4px;
+    margin: -4px 1px 0 0;
+  }
+}
+
+.tooltip-inner {
+  white-space: nowrap;
+  background-color: $color-navy-l1;
+  border-radius: 4px;
+  color: white !important; // add !imporatant in case parent div have disable class
+}

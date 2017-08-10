@@ -1,0 +1,118 @@
+.delete-team-member {
+  title {
+    font-size: 16px;
+  }
+
+  .member-delete-form {
+    min-height: 100px;
+  }
+
+  .desc {
+  }
+
+  form {
+    .form-group {
+      padding: 5px 0;
+      border-bottom: none;
+
+      .delete-action {
+        float: none;
+      }
+
+      &:first-child {
+        padding-bottom: 0;
+      }
+
+      & + .form-group {
+        padding-top: 0;
+      }
+    }
+  }
+
+  .recipient-list {
+    padding-top: 15px;
+
+    .recipient-input {
+      width: 100%;
+
+      margin-right: 150px;
+    }
+
+    &.disabled {
+      opacity: 0.5;
+    }
+
+    .dropdown-menu {
+    	list-style-type: none;
+      background-color: white;
+      border: 1px solid $color-grey-l2;
+      border-radius: $border-radius-base;
+      padding: 10px 0;
+      width: calc(100% - 120px);
+      z-index: 9;
+      @include box-shadow(0 0px 7px rgba(0,0,0,.15));
+
+      // Scrollable
+      max-height: 250px;
+      overflow-y: auto;
+      overflow-x: hidden; // Fixed Firefox
+      // Positioning
+      position: absolute;
+      li {
+        cursor: pointer;
+        color: $color-navy-l2;
+        padding: 10px;
+        margin: 0 10px;
+        font-size: $font-size-sm;
+
+    		&.ui-state-focus, &:hover, &.selected, &.active {
+    		  color: white;
+    		  background-color: $color-navy-l2;
+    		  border-radius: $border-radius-base;
+    		}
+
+    		span {
+    			display: block;
+    			color: $color-grey-l3;
+    			font-size: $font-size-xs;
+    		}
+
+      }
+    }
+  }
+
+  .form-group {
+    label {
+      font-weight: normal;
+    }
+  }
+
+  .recipient-taginput {
+    border: none;
+    padding-top: 0;
+  }
+}
+
+.internal-users {
+  tbody {
+	  tr {
+      td {
+        label {
+          &.checkbox {
+            margin-bottom: 0;
+            padding-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.select-user-type:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+  border-color: fade(#c0c5c9, 70%);
+  box-shadow: 0 0 5px 3px fade(#c0c5c9, 30%);
+}

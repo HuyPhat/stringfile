@@ -1,0 +1,190 @@
+.context-menu {
+
+	.dropdown-menu {
+	  width: 230px;
+		border-color: $color-grey-l2;
+		padding: 0; margin: 0;
+		@include box-shadow(0 1px 1px rgba(0,0,0,.1));
+	  overflow-y: hidden;
+
+		> li {
+	    height: 40px;
+	    overflow-y: hidden; // important
+
+	    &:last-child { display: none; }
+
+		  &:not(:last-child) { border-bottom: 1px solid $color-grey-l2; }
+
+		  // Danger State
+		  &.danger {
+		    > a {
+		      &:hover,
+		      &:focus {
+		        background: $color-danger;
+		      }
+		    }
+		  }
+
+		  // Actived State
+			&.active {
+			  > a {
+			    background-color: $color-green;
+			    color: white;
+			  }
+			}
+
+			// Disabled state
+			&.disabled {
+			  @include disabled();
+
+        .icon-view:after  { content: "(Web Viewing Unavailable)"; }
+			  // .icon-cloud-download:after  { content: "(No download permssion)"; }
+			  .icon-users:after { content: "(No Recipients)"; }
+			  .icon-chart:after { content: "(This File has no Views)"; }
+
+			}
+
+		  // Text display -----------------------------------
+
+		  > a {
+		  	@include transform(translateY(-50%));
+
+				padding: 10px 0;
+		    color: inherit;
+		    text-align: center;
+		    font-weight: 600;
+		    font-family: $font-family-base !important;
+
+		    &:before {
+			    font-size: 20px;
+			    padding-bottom: 10px;
+			    display: block;
+			    font-family: 'icomoon';
+		    }
+
+		    &:after {
+			  	line-height: 6;
+					display: block;
+					font-family: $font-family-base;
+					font-weight: 600;
+		    }
+
+		    &:hover {
+          @include transform(translateY(0));
+          padding: 6px 0;
+          &:before {
+            font-size: 20px
+          }
+			  	background-color: $color-green;
+		      color: white;
+          font-size: 0;
+          // height: 40px;
+		    }
+	    }
+
+	    // .icon-view:after    { content: "Open"; }
+		 //  .icon-laptop:after  { content: "Open on Desktop"; }
+		 //  .icon-phone:after   { content: "Open in App"; }
+		 //  .icon-chart:after   { content: "Track File Views"; }
+		 //  .icon-revoke:after  { content: "Revoke Access"; }
+		 //  .icon-trash:after   { content: "Delete..."; }
+		 //  .icon-users:after   { content: "View Recipients"; }
+		 //  .icon-reshare:after { content: "Re-Share..."; }
+		 //  .icon-restore:after { content: "Restore Access"; }
+		 //  .icon-push-update:after { content: "Push Update"; }
+			// .icon-add-user:after    { content: "String..."; }
+			// .icon-locked:after      { content: "Reset Password"; }
+   //    .icon-delete-user:after { content: "Delete..."; }
+			// .icon-cloud-download:after { content: "Download"; }
+
+			// .icon-pencil:after  { content: "Edit"; }
+			// .people      & .icon-pencil:after  { content: "Change Rights"; }
+			// .recipients  & .icon-pencil:after  { content: "Change Rights"; }
+
+		  // -------------------------------------------------
+
+		} // <li>
+
+	} // .dropdown-menu
+
+	//open state for mobile
+	&.open {
+
+		@media (max-width: 768px) {
+	  	top: 0 !important;
+	  	left: 0 !important;
+	  	bottom: 0 !important;
+			width: 100%;
+			z-index: 1042; // over recipient modal
+			overflow-y: auto;
+
+			.dropdown-menu {
+		  	top: 0!important;
+        left: 0!important;
+		  	width: 100%;
+		  	min-height: 100%;
+		  	border: none;
+		  	border-radius: 0;
+		  	background-color: $color-navy-l1;
+
+			  > li {
+					background-color: white;
+
+					> a {
+
+						@include transition(none);
+
+						&:hover {
+							// @include transform(translateY(-15%));
+
+							background-color: transparent;
+							color: $color-navy-l2;
+						}
+
+						&:active {
+							background-color: $color-green;
+							color: white;
+						}
+					}
+
+					// Danger State
+				  &.danger {
+				    > a {
+				      &:active {
+				        background: $color-danger;
+				      }
+				    }
+				  }
+
+					// Close Context Menu
+				  &:last-child {
+					 	display: block;
+					 	background-color: $color-navy-l1;
+					  	text-align: center;
+					  	height: 60px;
+
+					 	> a {
+							display: inline-block;
+					 		color: white;
+							padding: 5px;
+					 		background-color: $color-navy-l1;
+							@include transform(none);
+
+							&:before {
+								border: 2px solid white;
+								border-radius: 50%;
+								padding: 7px 0 0 2px;
+								width: 45px;
+								height: 45px;
+					    }
+					  }
+				  }
+
+			  } // <li>
+		  } // .dropdown-menu
+
+	  } // $media
+
+	} //.open
+
+} // .context-menu

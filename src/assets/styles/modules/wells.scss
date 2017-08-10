@@ -1,0 +1,13 @@
+.well {
+  background-color: $color-grey-l1;
+  border-radius: $border-radius-base;
+  @include box-shadow(none);
+  font-weight: bold;
+}
+
+.show {
+
+  & + & {
+		margin-top: 10px;
+  }
+}

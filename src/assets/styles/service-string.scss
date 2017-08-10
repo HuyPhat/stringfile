@@ -1,0 +1,72 @@
+.service-string {
+  label.title {
+    margin-bottom: 10px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0 0 20px 20px;
+    padding: 0;
+
+    &.location-list {
+      min-height: 200px;
+      max-height: 300px;
+
+      overflow-y: auto;
+    }
+
+    li {
+      margin-bottom: 10px;
+
+      .logo {
+        width: 30px;
+        float: left;
+        margin-top: 2px;
+
+        *[class^='icon-'] {
+          font-size: 22px;
+        }
+      }
+
+      .info {
+        margin-left: 30px;
+
+        .avatar-container {
+          width: 50px;
+          height: 50px;
+          float: left;
+          margin-right: 10px;
+          text-align: center;
+
+          span {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+          }
+        }
+
+        .help-block {
+          margin: 0;
+
+          display: block;
+          max-width: 90%;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+
+        .network-name {
+          display: block;
+          max-width: 90%;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,115 @@
+// Reset Bootstrap
+.nav > li > a {
+  padding: 0px;
+}
+
+// New Style
+//---------------------------------------------------
+
+
+.nav-tabs {   
+
+  > li {      
+    padding: 0 10px;
+
+    &:first-child { padding-left: 0; }
+    
+    @media (max-width: 595px) {
+      text-align: center;
+      
+      /* one item */
+      &:only-child {
+        width: 100%;
+      }
+      
+      /* two items */
+      &:first-child:nth-last-child(2),
+      &:first-child:nth-last-child(2) ~ li {
+        width: 50%;
+      }
+      
+      /* three items */
+      // This is set-up to 50% width as well as there's one case when there's the spinner
+      // Need to check if we really has a case with 3 tabs in the list
+      &:first-child:nth-last-child(3),
+      &:first-child:nth-last-child(3) ~ li {
+        width: 50%;
+      }
+      
+      > a { @include wrap-text(); }  
+    }
+
+    // Actual tabs (as links)
+    > a {
+      color: $color-navy-l3;
+      word-spacing: 3px;
+      font-size: $font-size-xxs;
+      font-weight: bold;
+      text-transform: uppercase;
+      background-color: transparent !important;
+      padding-bottom: 10px; // !important
+      margin-right: 0;
+      border: none;
+      border-bottom: 4px solid transparent;
+    }
+
+    // Active state, and its :hover to override normal :hover
+    &.active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: $color-navy-l2;
+        background-color: transparent;
+        border: none;
+        border-bottom: 4px solid $color-green;
+      }
+    }
+  } 
+  
+  .tab-panel & {
+    margin-top: 11px;
+    padding: 0 20px;
+    position: relative;
+
+    .spinner {
+      position: absolute;
+      top: -2px;
+      right: 15px;
+    }
+  }
+      
+} // .nav-tabs
+
+// Style 2
+@mixin nav-style() {
+  background-color: $color-grey-l1;
+  
+  > li {
+    padding: 0;
+    border-top: 4px solid transparent;
+    border-right: 1px solid $color-grey-l2;   
+    
+    > a { 
+      padding: 5px 20px 10px;
+      font-size: $font-size-base - 4;
+      
+      span {
+        display: block;
+        text-align: center;
+        line-height: 1.5;
+        font-size: $font-size-base + 5;
+      }
+    }
+    
+    &.active {
+      border-top-color: $color-green;
+      background-color: white;
+      
+      > a {       
+        border-bottom-color: transparent !important;
+        border-right: none;
+        color: $color-green !important;
+      } 
+    }
+  }
+}

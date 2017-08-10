@@ -1,0 +1,206 @@
+/* Loader */
+// -------------------------
+@import '../variables';
+@import '../mixins';
+#ip-container { height: 100%; }
+
+.ip-header {
+  position: fixed;
+  min-height: 600px;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  background: $color-navy;
+  z-index: 1052; //Overlay nprogress 1051
+
+  .ip-logo,
+  .ip-loader, h1 {
+    position: absolute;
+		left: 0;
+		width: 100%;
+		// @include opacity(0);
+		cursor: default;
+		pointer-events: none;
+  }
+
+  h1 {
+		font-size: 200%;
+		font-weight: 200;
+		bottom: 35%;
+		text-align: center;
+    color: #6e7982;
+
+		@media (max-width: 767px) {
+	   	font-size: 120%;
+		 	bottom: 48%;
+		}
+  }
+
+  .ip-logo {
+    top: 0;
+		height: 100%;
+		@include transform(translate3d(0,25%,0));
+
+		@media (max-width: 767px) {
+		   @include transform(translate3d(0,12%,0));
+		 }
+
+    img {
+      min-width: 100px;
+			max-width: 140px;
+			width: 20%; // Responsive scaling
+    }
+  }
+
+  .ip-loader {
+		bottom: 20%;
+
+		@media (max-width: 767px) {
+		   bottom: 33%;
+		}
+
+		svg {
+			fill: none;
+			stroke-width: 6;
+
+		  .ip-loader-circlebg {
+		    stroke: $color-navy-l1;
+		  }
+
+		  .ip-loader-circle {
+		    @include transition(stroke-dashoffset 0.2s);
+		    stroke: $color-green;
+		  }
+		}
+  }
+
+  .ip-inner {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+/* Animations */
+// -------------------------
+
+/* Initial animation of header elements */
+#ip-container.loading {
+
+  .ip-logo,
+  .ip-loader {
+	   @include opacity(1);
+	   @include animation(animInitialHeader 1s cubic-bezier(0.7,0,0.3,1) both);
+  }
+
+  h1 {
+    @include opacity(1);
+    @include animation(animInitiaTagline 1s cubic-bezier(0.7,0,0.3,1) both);
+    @include animation-delay(0.8s);
+  }
+
+  .ip-loader {
+	   @include animation-delay(0.4s);
+  }
+}
+
+
+/* Header elements when loading finishes */
+#ip-container.loaded {
+
+  .ip-logo,
+  .ip-loader, h1 {
+	   @include opacity(1);
+  }
+
+  .ip-header {
+	@include animation(animLoadedHeader 1s cubic-bezier(0.7,0,0.3,1) forwards);
+
+	  .ip-logo {
+      @include transform-origin(50% 0);
+      @include animation(animLoadedLogo 1s cubic-bezier(0.7,0,0.3,1) forwards);
+    }
+
+    h1 {
+	  @include animation(animLoadedTagline 0.5s cubic-bezier(0.7,0,0.3,1) forwards);
+    }
+
+    .ip-loader {
+      @include animation(animLoadedLoader 0.5s cubic-bezier(0.7,0,0.3,1) forwards);
+    }
+  }
+
+  /*.ip-main,
+  .navbar,
+  .wrap-col {
+	.animation(animLoadedContent 1s cubic-bezier(0.7,0,0.3,1) none);
+	.animation-delay(0.2s);
+  }*/
+
+  .navbar-brand {
+	 @include animation(bounce 1s cubic-bezier(0.7,0,0.3,1) none);
+	@include animation-delay(0.6s);
+  }
+}
+
+/* Prevent error */
+.layout-switch .ip-header {
+  display: none;
+}
+
+/* Define keyframe animation */
+@-webkit-keyframes animInitialHeader {
+  from { @include opacity(0); @include transform(translate3d(0,800px,0)); }
+}
+
+@keyframes animInitialHeader {
+  from { @include opacity(0); @include transform(translate3d(0,800px,0)); }
+}
+
+@-webkit-keyframes animLoadedHeader {
+  to { @include transform(translate3d(0,-100%,0)); }
+}
+
+@keyframes animLoadedHeader {
+  to { @include transform(translate3d(0,-100%,0)); }
+}
+
+@-webkit-keyframes animInitiaTagline {
+  from { @include opacity(0); @include transform(translate3d(0,-30px,0)); }
+}
+
+@keyframes animInitiaTagline {
+  from { @include opacity(0); @include transform(translate3d(0,-30px,0)); }
+}
+
+@-webkit-keyframes animLoadedTagline {
+  to { @include opacity(0); @include transform(translate3d(0,-10px,0)); }
+}
+
+@keyframes animLoadedTagline {
+  to { @include opacity(0); @include transform(translate3d(0,-10px,0)); }
+}
+
+@-webkit-keyframes animLoadedLogo {
+  to { @include opacity(0); @include transform(translate3d(0,90%,0) translate3d(0,50px,0) scale3d(0.6,0.6,1)); }
+}
+
+@keyframes animLoadedLogo {
+  to { @include opacity(0); @include transform(translate3d(0,90%,0) translate3d(0,50px,0) scale3d(0.6,0.6,1)); }
+}
+
+@-webkit-keyframes animLoadedLoader {
+  to { @include opacity(0); @include transform(translate3d(0,-100%,0) scale3d(0.3,0.3,1)); }
+}
+
+@keyframes animLoadedLoader {
+  to { @include opacity(0); @include transform(translate3d(0,-100%,0) scale3d(0.3,0.3,1)); }
+}
+
+@-webkit-keyframes animLoadedContent {
+  from { @include opacity(0); @include transform(translate3d(0,-300px,0)); }
+}
+
+@keyframes animLoadedContent {
+  from { @include opacity(0); @include transform(translate3d(0,-300px,0)); }
+}

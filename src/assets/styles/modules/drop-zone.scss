@@ -1,0 +1,118 @@
+.drop-zone {
+	height: 100%;
+	width: 100%;
+	position: relative;
+
+  // Visual Zone
+  .big-circle {
+	  @include transition(all .2s linear);
+	  border: 2px dashed rgba(0, 0, 0, .1);
+	  border-radius: 50%;
+	  width: 350px;
+	  height: 350px;
+	  text-align: center;
+
+	  // Center
+	  position: absolute;
+	  left: 0;
+	  right: 0;
+	  top: 15%;
+	  margin: auto;
+
+	  &:before {
+			font-family: 'icomoon';
+			content: "\e61b";
+			color: rgba($color-navy-l2, 0.2);
+			font-size: 100px;
+			display: block;
+			margin-top: 60px;
+	  }
+
+	  &:after {
+			font-size: $font-size-lg;
+			color: rgba($color-navy-l2, 0.6);
+			content: 'String your file! \a Drag here, or select the "String" button.';
+			white-space: pre;
+			//font-weight: bold;
+	  }
+
+	  &.folder {
+
+		  &:after {
+				content: "This folder is empty! \a To string a file, drag it here.";
+		  }
+	  }
+
+	  // No-supported file
+	  &.no-supported-file {
+	  	border-color: $color-danger;
+
+	  	&:before {
+		  	color: $color-danger;
+	  	}
+
+	  	&:after {
+		  	color: $color-danger;
+		  	content: "Sorry! File does not supported \a Please try another.";
+	  	}
+	  }
+  }
+
+  // Icons
+  [class^="icon-"], [class*=" icon-"] {
+	  color: white;
+	  font-size: 22px;
+	  position: absolute;
+	  @include transition(all .3s linear);
+	  @include opacity(0);
+  }
+
+  .icon-photo       { top: 140px; left: 100px; }
+  .icon-video       { top: 95px;  left: 115px; }
+  .icon-volume      { top: 60px;  left: 130px; }
+	.icon-excel       { top: 50px;  left: 150px; }
+  .icon-word        { top: 70px;  left: 190px; }
+  .icon-text        { top: 80px;  left: 200px; }
+  .icon-pdf         { top: 100px; left: 220px; }
+  .icon-power-point { top: 140px; left: 200px; }
+
+  //Hover state
+  &.drag-hover {
+  	.big-circle {
+	  	border-color: transparent;
+			background-color: $color-navy-l2;
+			@include animation(zoom 1s infinite);
+
+			&:before, &:after { color: white; }
+
+			&:after {
+				content: 'Incoming! \a Drop it now.';
+			}
+
+			[class^="icon-"], [class*=" icon-"] {
+				@include opacity(1);
+			}
+
+			.icon-photo       { top: 120px;  left: 85px;  @include animation(bounce 1s linear 2s   alternate); }
+		  .icon-video       { top: 80px;   left: 80px;  @include animation(bounce 1s linear 2.2s alternate); }
+		  .icon-volume      { top: 45px;   left: 110px; @include animation(bounce 1s linear 2.4s alternate); }
+			.icon-excel       { top: 30px;   left: 150px; @include animation(bounce 1s linear 2.6s alternate); }
+		  .icon-word        { top: 40px;   left: 200px; @include animation(bounce 1s linear 2.8s alternate); }
+		  .icon-text        { top: 70px;   left: 230px; @include animation(bounce 1s linear 3s   alternate); }
+		  .icon-pdf         { top: 110px;  left: 250px; @include animation(bounce 1s linear 3.2s alternate); }
+		  .icon-power-point { top: 150px;  left: 230px; @include animation(bounce 1s linear 3.4s alternate); }
+  	}
+  }
+}
+
+@-webkit-keyframes zoom {
+  from { @include box-shadow(0 0 0 0 $color-navy-l2); }
+   50% { @include box-shadow(0 0 0 10px $color-navy-l2); }
+    to { @include box-shadow(0 0 0 0 $color-navy-l2); }
+}
+
+@keyframes zoom {
+  from { @include box-shadow(0 0 0 0 $color-navy-l2); }
+   50% { @include box-shadow(0 0 0 10px $color-navy-l2); }
+    to { @include box-shadow(0 0 0 0 $color-navy-l2); }
+}

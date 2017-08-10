@@ -1,0 +1,77 @@
+// Recipients Modal
+// --------------------------------------------------
+
+.recipients {
+	z-index: 1041;
+
+	.modal-dialog {
+		@include modal-full();
+
+		.modal-content {
+
+			.modal-body {
+
+				// loading center
+				.spinner-icon {
+					margin: 50px auto;
+				}
+
+				// table of users data
+				.table {
+
+					tr {
+
+						&:hover {
+				    	td {
+				      	background-color: #efefef;
+							}
+				    }
+
+						td, th {
+
+							&:not(:first-child) { font-size: $font-size-sm; }
+
+							//&:nth-child(2) { max-width: 120px; } // Fixed when long name
+
+							&:nth-child(3),
+							&:nth-child(5) {
+								text-align: center;
+						  }
+
+							&:nth-child(4),
+							&:nth-child(6),
+						  &:nth-child(7),
+						  &:nth-child(8),
+						  &:nth-child(9),
+						  &:nth-child(10) {
+								text-align: right;
+						  }
+
+						  @media (max-width: 1080px) {
+							  &:nth-child(3),
+							  &:nth-child(11) { display: none; }
+						  }
+
+						  @media (max-width: 959px) {
+							  &:nth-child(7),
+							  &:nth-child(8) { display: none; }
+						  }
+
+						  @media (max-width: 767px) {
+							  &:first-child {width: 50px;}
+
+						  	&:nth-child(4),
+						  	&:nth-child(6),
+							  &:nth-child(9),
+							  &:nth-child(10) { display: none; }
+
+							  &:nth-child(5) { text-align: right; }
+						  }
+						}
+					}
+				} //.table
+
+			}	// .modal-body
+		}	// .modal-content
+	} // .modal-dialog
+} // .recipients

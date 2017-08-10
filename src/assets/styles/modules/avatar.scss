@@ -1,0 +1,284 @@
+// Global
+//---------------------------------------------------
+
+.avatar {
+  display: block;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: $color-blue;
+  color: white;
+  font-weight: 200;
+  text-transform: uppercase;
+  text-align: center;
+  @include transition(all .2s linear);
+
+  // Photo
+  img {
+  	border-radius: 50%;
+    background-color: transparent;
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    top: 0;
+    left: 0;
+  }
+
+  // Sizes
+  &.lg {
+		width: 100px;
+    height: 100px;
+    font-size: 3em;
+    line-height: 2.3em;
+
+    // Center
+    margin-left: -50px;
+    margin-bottom: 30px;
+    left: 50%;
+
+    // = .md
+    @media (max-width: 767px) {
+	    //@extend .md;
+	    margin-left: -30px;
+    }
+  }
+
+  &.md {
+		width: 60px;
+    height: 60px;
+    font-size: 2em;
+    line-height: 2.1em;
+  }
+
+  &.sm {
+		width: 40px;
+    height: 40px;
+    font-size: 1em;
+    line-height: 2.8em;
+  }
+
+  // File icons
+  &.icon-video  { background-color: $color-video;  }
+  &.icon-excel  { background-color: $color-excel;  }
+  &.icon-volume { background-color: $color-volume; }
+  &.icon-photo  { background-color: $color-photo;  }
+  &.icon-text   { background-color: $color-text;   }
+  &.icon-word   { background-color: $color-word;   }
+  &.icon-pdf    { background-color: $color-pdf;    }
+  &.icon-power-point { background-color: $color-power-point; }
+
+  // Refresh
+  &.icon-refesh {
+		&:hover {
+      @include opacity(.5);
+		}
+  }
+
+  // Edit
+  &.edit {
+
+    &:before {
+      font-family: 'icomoon';
+      content: "\e618";
+      position: absolute;
+      width: inherit;
+      height: inherit;
+      top: 0;
+      left: 0;
+      font-size: 0;
+      border-radius: 50%;
+      color: white;
+      z-index: 100;
+      @include transition(all .2s linear);
+    }
+
+		&:hover {
+		  cursor: pointer;
+		  color: $color-blue;
+		  @include box-shadow(0 0 0 7px $color-green);
+
+		  &:before {
+				background-color: rgba(0, 0, 0, .6);
+				font-size: .5em;
+		  }
+		}
+  }
+
+  // Title
+  + .help-block {
+    margin-bottom: 30px;
+    text-align: center;
+    padding: 5px 20px;
+    border-radius: 20px;
+    background-color: $color-grey-l1;
+
+    span + span {
+	  	margin-left: 20px;
+    }
+  }
+}
+
+.avatar-update-block {
+  .avatar.lg {
+    // margin-bottom: 0;
+  }
+	border: 1px solid #e5e5e5;
+	border-radius: $border-radius-base;
+	padding-top: 10px;
+	width: 360px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.avatar-edit-menu{
+  list-style-type: none;
+	border-radius: $border-radius-base;
+  padding: 0;
+  border: 1px solid #e5e5e5;
+  border-top: none;
+  display: table;
+  margin: 0 auto;
+  width: 360px;
+  background-color: $color-grey-l1;
+
+  li {
+    display: inline-block;
+    font-size: $font-size-xs;
+
+    a {
+      display: inherit;
+      padding: 10px 14px;
+      @include transition(none);
+      color: $color-word;
+
+      &:hover {
+        background-color: $color-navy-l1;
+        color: white;
+      }
+
+      .disabled {
+        @include disabled();
+      }
+    }
+
+    &:not(:last-child) { border-right: 1px solid #e5e5e5; }
+  }
+}
+
+// Upload Avatar
+.avatar-container {
+	position: relative;
+	border: 1px solid #e5e5e5;
+	border-radius: $border-radius-base;
+	padding-top: 10px;
+	width: 360px;
+	margin: 0 auto 30px;
+	overflow: hidden;
+	cursor: move;
+	//background-image: url(assets/images/png/login_horizontal_bg.png);
+
+	.zoom {
+		list-style-type: none;
+		padding: 0;
+		position: absolute;
+		top: 40px;
+		right: 90px;
+
+		li {
+			display: block;
+			overflow: hidden;
+
+			&:first-child {
+				@include border-top-radius($border-radius-sm);
+			}
+
+			&:last-child {
+				@include border-bottom-radius($border-radius-sm);
+			}
+
+			a {
+				@include transition(none);
+				display: block;
+				text-align: center;
+				width: 17px;
+				height: 17px;
+				background-color: $color-navy-l3;
+				color: $color-navy;
+				font-weight: bold;
+				line-height: 1;
+
+				&:hover {
+					background-color: $color-navy-l1;
+					color: white;
+				}
+			}
+		}
+	}
+
+	.avatar-edit-menu {
+		list-style-type: none;
+		padding: 0;
+		border-top: 1px solid #e5e5e5;
+		display: table;
+		margin-bottom: 0;
+		width: 100%;
+		background-color: $color-grey-l1;
+
+		li {
+			display: inline-block;
+			font-size: $font-size-xs;
+
+			a {
+				display: inherit;
+				padding: 10px;
+				@include transition(none);
+
+				&:hover {
+					background-color: $color-navy-l1;
+					color: white;
+				}
+
+				.disabled {
+					@include disabled();
+				}
+			}
+
+			&:not(:last-child) { border-right: 1px solid #e5e5e5; }
+		}
+	}
+}
+
+// Other
+//---------------------------------------------------
+
+// .tab-panel positioning
+.tab-panel .avatar {
+  float: left;
+  top: -2px;
+}
+
+.avatar-holder {
+  .loading-indicator {
+    position: relative;
+    left: calc(50% - 6px);
+    top: -95px;
+
+    color: #fff;
+  }
+  .user-avatar {
+    &.loading {
+
+      color: gray;
+      background-color: lightgray;
+
+      &:hover {
+        box-shadow: none;
+
+        &:before {
+          background-color: rgba(155, 155, 155, 0.6);
+          font-size: 0;
+        }
+      }
+    }
+  }
+}

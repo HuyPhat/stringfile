@@ -1,0 +1,117 @@
+.ui-notification
+{
+    position: fixed;
+    z-index: 9999;
+    width: auto;
+    cursor: pointer;
+    -webkit-transition: all ease .5s;
+         -o-transition: all ease .5s;
+            transition: all ease .5s;
+    color: #fff;
+    background: rgba(87,96,102,.95);
+    border-radius: 60px;
+    @include box-shadow(0 0 3px rgba(0,0,5,.5));
+    padding: 4px 20px 4px 4px;
+    &:hover {
+
+    }
+    &.killed {
+        -webkit-transition: opacity ease 1s;
+         -o-transition: opacity ease 1s;
+            transition: opacity ease 1s;
+        @include opacity(0);
+    }
+    > h3 {
+        font-size: 14px;
+        font-weight: bold;
+        display: block;
+        margin: 10px 10px 0 10px;
+        padding: 0 0 5px 0;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, .3);
+    }
+    .avatar {
+        float: left;
+        display: inline-block;
+        background-color: white;
+        color: $color-grey-l4;
+        font-weight: bold;
+        .icon-check, .icon-notice {
+            color: $color-green;
+            font-size: 20px;
+            line-height: 2;
+        }
+         .icon-notice {
+           color: $color-danger;
+         }
+    }
+    a {
+        margin-top: 12px;
+        margin-left: 10px;
+        color: white;
+        font-size: $font-size-xs;
+        font-weight: 100;
+
+        &.cancel {
+            margin-top: 8px;
+            margin-left: 20px;
+            font-size: $font-size-lg;
+            font-weight: bold;
+
+            @media (max-width: 767px ) {
+                float: right;
+                margin-right: 20px;
+            }
+        }
+    }
+    &.success {
+        .avatar.success {
+            display: inline-block;
+        }
+        .avatar.notice {
+            display: none;
+        }
+    }
+    &.error {
+        .avatar.success {
+            display: none;
+        }
+        .avatar.notice {
+            display: inline-block;
+        }
+    }
+    &.info {
+        .avatar.success, .avatar.notice {
+            display: none;
+        }
+    }
+}
+.ui-notification > .message
+{
+    margin: 10px 10px 10px 10px;
+    display: inline-block;
+}
+.ui-notification.warning
+{
+    color: #fff;
+    background: #f0ad4e;
+}
+.ui-notification.error
+{
+    color: #fff;
+    background: #d9534f;
+}
+// .ui-notification.success
+// {
+//     color: #fff;
+//     background: #5cb85c;
+// }
+// .ui-notification.info
+// {
+//     color: #fff;
+//     background: #5bc0de;
+// }
+.ui-notification:hover
+{
+    opacity: .7;
+}

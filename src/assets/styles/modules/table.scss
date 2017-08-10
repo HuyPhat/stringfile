@@ -1,0 +1,324 @@
+// Up / Down Arrow
+//---------------------------------------------------
+
+.caret {
+  // margin-top: -3px !important;
+  margin: 5px !important;
+  border-radius: $border-radius-sm;
+
+  &-reversed {
+  	border-top-width: 0;
+		border-bottom: 4px solid;
+  }
+}
+
+// Table
+//---------------------------------------------------
+
+.table {
+  margin-bottom: 0;
+
+	tr { 
+		border-left: 3px solid transparent; 
+		
+	} // Refer to left color bar
+
+  .checkbox {
+    top: 3px;
+
+  	span { font-size: $font-size-base; }
+  }
+
+	thead {
+
+		th {
+		  text-transform: uppercase;
+		  font-size: $font-size-xxs !important;
+		  font-weight: bold;
+		}
+
+		@media (max-width: 768px) { display: none; }
+	}
+
+  tbody {
+
+	  tr {
+
+	  	&.inactive {
+			  @include inactive();
+		  }
+
+	  	// General <td>
+      td {
+        border-top: none;
+        border-bottom: 1px solid #ddd;
+        @include wrap-text();
+        overflow-x: visible;
+        position: relative;
+
+        strong { @include wrap-text(); }
+				&:focus {
+					outline: none;
+				}
+        label {
+          &.checkbox {
+            // margin-bottom: 0;
+            // padding-left: 0;
+          }
+				}
+				&.react-bs-table-no-data {
+					display: none;
+				}
+      }
+
+      // Row State
+      &.warning {
+
+        td {
+	        background-color: lighten($color-warning, 40%) !important;
+	        color: darken($color-warning, 25%) !important;
+
+	        a { color: darken($color-warning, 25%); }
+
+        }
+      }
+
+      &.danger {
+
+        td {
+	        background-color: lighten($color-danger, 25%) !important;
+	        color: darken($color-danger, 40%) !important;
+
+	        a { color: darken($color-danger, 40%); }
+
+        }
+      }
+
+      &.success {
+
+        td {
+	        background-color: lighten($color-green, 40%) !important;
+	        color: darken($color-green, 30%) !important;
+
+	        a { color: darken($color-green, 30%); }
+
+        }
+      }
+
+      // Left bar indicator
+	    &.success-bar { border-left-color: $color-green;   }
+	    &.warning-bar { border-left-color: $color-warning; }
+	    &.danger-bar  { border-left-color: $color-danger;  }
+
+    }
+  }
+
+	td, th {
+	  vertical-align: middle !important;
+	  padding: 10px !important;
+	  @include transition(all .15s linear);
+
+	  strong { display: block; }
+
+	  &:last-child { text-align: right; }
+	}
+
+	&.hide-inactive {
+
+	  .inactive {
+		  display: none;
+	  }
+  }
+
+	// Tab Panel
+	.tab-panel & {
+		margin-bottom: 20px;
+		overflow-x: hidden;
+
+		th {
+			padding-left: 20px !important;
+			border-bottom-width: 1px;
+		}
+
+		tr {
+			border-left: none;
+
+			td {
+				font-size: $font-size-sm;
+				border-bottom: 1px solid #eee;
+				//vertical-align: top !important;
+
+				.help-block {
+					margin: 0;
+					color: $color-danger;
+					font-size: $font-size-xxs;
+				}
+
+				&:first-child {
+	    		color: $color-grey-l4;
+					padding-left: 20px !important;
+				}
+
+				&:last-child {
+					padding-right: 15px !important;
+					overflow: hidden;
+					max-width: 100px; //Important. Fix bug when second column get long text.
+				}
+			}
+		}
+	} // .tab-panel
+
+	// People Activity
+	&.activity {
+
+		thead { @media (max-width: 768px) { display: table-header-group; } }
+
+		th { text-align: left; }
+
+		tr {
+
+			td {
+				white-space: normal;
+
+				a {
+					display: block;
+					font-weight: bold;
+				}
+
+				span {
+					color: $color-grey-l4;
+				}
+
+				[class^="icon-"] {
+					font-size: $font-size-lg;
+				}
+
+				&:first-child {
+					width: 10px;
+				}
+
+				&:last-child {
+					text-align: left;
+				}
+			}
+		}
+	} // .activity
+
+	// Setting Linked Devices
+	&.linked-devices {
+
+		tr {
+
+			td, th {
+
+				max-width: 200px;
+
+				@media (max-width: 595px) {
+
+					max-width: 100px;
+
+					&:last-child {
+						display: none;
+					}
+				}
+			}
+
+			td {
+				font-size: $font-size-sm;
+
+				[class^="icon-"] {
+					font-size: 20px;
+					color: $color-navy-l3;
+					top: 2px;
+			  }
+
+			  .btn {
+	        margin-top: 0;
+	        min-width: 110px;
+			  }
+			}
+		}
+	} // .linked-devices
+
+  &.connected-networks {
+    tr {
+
+			td, th {
+
+				max-width: 200px;
+
+				@media (max-width: 595px) {
+
+					max-width: 200px;
+
+					&:last-child {
+						// display: none;
+					}
+				}
+			}
+
+			td {
+				font-size: $font-size-sm;
+
+				[class^="icon-"] {
+					font-size: 26px;
+					color: #666;
+			  }
+
+			  .btn {
+	        margin-top: 0;
+	        min-width: 110px;
+			  }
+
+        .help-block {
+          margin: 0;
+        }
+
+        .logo {
+          width: 50px;
+          height: 50px;
+          float: left;
+          margin-right: 10px;
+          text-align: center;
+
+          span {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+          }
+        }
+
+        .info {
+
+        }
+			}
+		}
+  }
+
+	// Add Previous recipients
+	&.previous-recipients {
+		display: block;
+		max-height: 313px;
+		overflow-y: auto;
+		overflow-x: hidden;
+
+		tr {
+			border-left: none;
+
+			td {
+				border-bottom: 1px solid #eee;
+
+				strong { display: block; }
+
+				&:nth-child(1) { padding-left: 0 !important; padding-right: 0 !important; line-height: 1px; }
+				&:nth-child(3) { text-align: left; width: 100%; max-width: 252px; }
+
+			}
+		}
+
+	} // .linked-devices
+
+} // .table

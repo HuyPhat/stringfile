@@ -1,0 +1,293 @@
+// Modal
+// --------------------------------------------------
+.normal {
+  .modal-backdrop{
+    display: none;
+  }
+  .modal-dialog {
+    margin-top: 0;
+    width: 450px;
+  }
+  .modal {
+      bottom: 0;
+      right: 0;
+      left: auto;
+      top: auto;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,.5);
+      .modal-header {
+        padding: 5px;
+        background-color: $color-navy-l2;
+        .normal {
+          display: none
+        }
+        h4.modal-title {
+          font-size: 20px;
+          margin-top: 0;
+          text-align: left;
+          .glyphicon.glyphicon-chevron-down {
+            font-size: 14px;
+          }
+        }
+      }
+      .modal-footer {
+        display: none;
+      }
+  }
+}
+.minimize {
+  .modal-backdrop{
+    display: none;
+  }
+  .modal-dialog {
+    margin-top: 0;
+    width: 450px;
+  }
+  .modal {
+    bottom: 0;
+    right: 0;
+    left: auto;
+    top: auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    .modal-header {
+      padding: 5px;
+      background-color: $color-navy-l2;
+      .minimize {
+        display: none
+      }
+      h4.modal-title {
+        font-size: 20px;
+        margin-top: 0;
+        text-align: left;
+        .glyphicon.glyphicon-chevron-up {
+          font-size: 14px;
+        }
+      }
+    }
+    .modal-body, .modal-footer {
+      display: none;
+    }
+  }
+}
+.maximun {
+  .modal {
+    .modal-header {
+      .normal, .minimize {
+        display: none;
+      }
+    }
+  }
+}
+.modal {
+
+  // When fading in the modal, animate it to slide down
+  &.fade .modal-dialog {
+    @include translate3d(0, -100%, 0);
+    @include transition-transform("0.3s ease-out");
+  }
+
+  &.in .modal-dialog { @include translate3d(0, 0, 0) }
+
+  // Actual modal
+	.modal-content {
+	  border: none;
+	  border-radius: 15px;
+	  @include box-shadow(none);
+
+	  // Modal header
+		.modal-header {
+		  border-bottom: none;
+
+		  .close { text-shadow: none;  }
+
+		  // Title text within header
+			.modal-title {
+			  font-size: 30px;
+			  color: $color-navy-l1;
+			  font-weight: bold;
+			  text-align: center;
+			  line-height: normal;
+			  margin-top: 20px;
+
+			  @media (max-width: 767px) { font-size: 20px; }
+			}
+		}
+
+	  // Modal body
+		.modal-body {
+		  padding: 15px 60px;
+		  word-wrap: break-word; //prevent super long text
+		  @media (max-width: 767px) { padding: 15px 10px; }
+
+		  // Lock body when an action in progress
+		  .mask {
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    display: block;
+		    width: calc(100% - 1px);
+		    height: 100%;
+		    background-color: white;
+		    z-index: -1; // behind all other elements must be < 0
+		    @include opacity(0);
+		    @include transition(all .2s linear);
+		  }
+
+		  // ON / OFF .mask
+		  &.disabled {
+		  	.mask {
+			  	z-index: 3;
+		      @include opacity(.5);
+		  	}
+		  }
+
+		  // .alert >= .mask
+		  .alert {
+				position: relative;
+				z-index: 3;
+			}
+
+      .selected-files {
+        ul {
+          min-height: 100px;
+          overflow-y: auto;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          padding: 10px;
+          list-style: none;
+          li.tag {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: $color-navy-l2;
+            color: #fff;
+            border-radius: 3px;
+            padding: 6px 25px 10px 10px;
+            font-size: 16px;
+            display: inline-block;
+            width: auto;
+            max-width: 150px;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-right: 10px;
+            text-overflow: ellipsis;
+            position: relative;
+            span.text {
+              line-height: 16px;
+              vertical-align: middle;
+            }
+            [class^="icon-"] {
+              font-size: 20px;
+              margin-right: 10px;
+              vertical-align: middle;
+            }
+            a {
+              position: absolute;
+              right: 5px;
+            }
+          }
+        }
+      }
+      .permissions {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        .form-group:last-child, .form-group:nth-child(3), .form-group:nth-child(4) {
+          border-bottom: none;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+      }
+      .message {
+        margin-top: 20px;
+      }
+      .step-1 {
+        .selected-file-label {
+          display: none;
+
+        }
+        .selected-files {
+          li.tag {
+            padding: 6px 10px 10px 10px;
+          }
+        }
+      }
+		}
+
+	  // Modal Footer
+		.modal-footer {
+		 	padding: 15px 60px 30px 60px;
+		 	border-top: none;
+		 	text-align: center;
+
+		 	@media (max-width: 767px) { padding: 10px; }
+		}
+
+	} //.modal-content
+
+	// Sizes
+	@media (min-width: 767px) {
+
+		.modal-lg {
+			width: 950px;
+
+			@media (max-width: 959px) {
+	    	width: 100%;
+	    	padding-left: 10px;
+	    	padding-right: 10px;
+	    }
+		}
+
+	  .modal-md { width: 750px; }
+
+	  .modal-sm {
+	  	width: 400px;
+
+	  	.modal-body { padding: 15px 30px; }
+
+	  	.modal-footer { padding: 15px 30px 30px 30px; }
+	  }
+
+	} // size
+
+} //.modal
+
+// Masking
+.modal-backdrop {
+
+	// Trick - Force Backdrop always 100% height
+	height: 100%;
+	min-height: 100%;
+
+  background-color: $color-navy;
+  &.in { @include opacity(.9); }
+}
+
+// Sub Modal
+// --------------------------------------------------
+
+.sub-modal {
+  .modal-dialog {
+		//margin-top: 140px;
+  }
+}
+
+.sub-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1041;
+  //border-radius: 13px;
+  background: $color-navy;
+  @include opacity(.9);
+}
+
+// Blur background when modal open
+// --------------------------------------------------
+
+/*body.modal-open #ip-container {
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
+}*/

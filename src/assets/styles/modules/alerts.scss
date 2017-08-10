@@ -1,0 +1,46 @@
+.alert {
+	border: none;
+	color: white;
+
+	/*
+position: fixed !important;
+	border-radius: 0;
+	z-index: 10;
+	top: 0 !important;
+	left: 0 !important;
+	width: 100%;
+*/
+
+	word-wrap: break-word; //prevent super long email address
+
+	// Adjust close link position
+  .close {
+    text-shadow: none;
+    @include opacity(1);
+    color: rgba(0,0,0,.4);
+  }
+
+	// Alternate styles
+	&.alert-info {
+		background-color: $color-navy-l1;
+	}
+
+	&.alert-success {
+		background-color: $color-green;
+	}
+
+	&.alert-warning {
+		background-color: $color-warning;
+	}
+
+	&.alert-danger {
+		background-color: $color-danger;
+	}
+}
+
+.messages {
+	.alert {
+		margin-top: 0;
+    margin-bottom: 20px;
+	}
+}

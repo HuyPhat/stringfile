@@ -1,0 +1,125 @@
+//-------------------------------------
+
+.teams-signup {
+	background-color: white;
+	height: 100%;
+	overflow: hidden;
+
+	// Tab Style
+	.nav-tabs {
+		@include nav-style();
+		padding-left: 80px;
+		min-width: 1000px;
+
+		// Logo
+		&:before {
+			background: #fff url(assets/images/svg/logo.svg) no-repeat;
+			width: 40px;
+			height: 40px;
+
+			position: absolute;
+			left: 20px;
+			top: 14px;
+		}
+
+		> li {
+			width: 230px;
+			text-align: center;
+
+			&:first-child {
+				border-left: 1px solid $color-grey-l2;
+			}
+		}
+	} // <ul>
+
+	header {
+		position: relative;
+    margin: 20px 0;
+    padding: 0 20px;
+    height: 40px;
+    padding-bottom: 57px;
+    border-bottom: 1px solid #ddd;
+    min-width: 800px;
+
+		//Search box
+    .input-group {
+      width: 300px !important;
+
+      .form-control {
+	    	padding-right: 50px; // avoid overlap "x"
+      }
+
+      &.date {
+	      top: 0;
+	      margin: 0;
+
+	      .form-control, input-group-addon { height: 35px; }
+      }
+    }
+	}
+
+	.tab-content, .tab-pane {
+		height: 100% !important;
+
+		// Alert
+		.alert {
+			border-radius: 0;
+			margin: 0;
+		}
+
+	}
+
+	table {
+		height: calc(100% - 166px);
+
+	  tbody, thead, & { display: block; }
+
+	  tbody {
+		  height: calc(100% - 39px);
+		  overflow-y: auto;
+		  overflow-x: hidden;
+	  }
+
+		tr {
+
+	  	&:nth-child(odd) {
+	    	td {
+	      	background-color: #f9f9f9;
+				}
+	    }
+
+		  &:hover {
+	    	td {
+	      	background-color: #efefef;
+				}
+	    }
+
+	  }
+
+		td, th {
+			white-space: nowrap;
+			width: 20%;
+
+			&:last-child { text-align: left; }
+
+			&:nth-child(1) { width: 90px; min-width: 90px; max-width: 90px; }
+			&:nth-child(2),
+			&:nth-child(3),
+			&:nth-child(4),
+			&:nth-child(5),
+			&:nth-child(6),
+			&:nth-child(7) { min-width: 140px; max-width: 140px; }
+			&:nth-child(8),
+			&:nth-child(9),
+			&:nth-child(10),
+			&:nth-child(11),
+			&:nth-child(12),
+			&:nth-child(13),
+			&:nth-child(14) { max-width: 75px; min-width: 75px; }
+		}
+	}
+
+	button.btn-default {
+		margin: 3px 0 0 20px;
+	}
+}

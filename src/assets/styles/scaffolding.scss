@@ -1,0 +1,98 @@
+// Webkit Scrollbar
+// --------------------------------------------------
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background-color: $color-grey-l2;
+  //border-radius: 8px;
+
+}
+::-webkit-scrollbar-thumb {
+  background-color: $color-navy-l3;
+  border-radius: 8px;
+
+  &:hover {
+		background-color: $color-navy-l1;
+  }
+}
+::-webkit-scrollbar-track-piece:start {
+	//background-color: $color-green;
+}
+
+// Body
+// --------------------------------------------------
+
+// Reset
+//body, html {
+//  height: 100%;
+//
+//  font-family: $font-family-base;
+//  color: $color-navy-l2;
+//  font-size: $font-size-base;
+//  background-color: $color-navy;
+//  cursor: default;
+//
+//  // Rendering text
+//  text-rendering: optimizeLegibility;
+//  shape-rendering: geometricPrecision;
+//  -webkit-font-smoothing: subpixel-antialiased; // default is 'antialiased'
+//  //-moz-osx-font-smoothing: grayscale;
+//
+//  @include noselect(); // mouse wrap
+//
+//}
+
+// Links
+a {
+  color: $color-navy-l2;
+  @include transition(.25s);
+
+  &:hover,
+  &:focus {
+    color: $color-navy-l1;
+    text-decoration: none;
+    outline: none;
+  }
+
+  .icon-trash, &.icon-trash,
+	.icon-revoke, &.icon-revoke,
+	.icon-switch, &.icon-switch,
+	.icon-delete-user, &.icon-delete-user {
+
+		&:hover,
+	  &:focus {
+	  	color: $color-danger;
+		}
+	}
+
+  &.disabled {
+	  &,
+	  &:hover,
+	  &:focus {
+	    @include disabled();
+	  }
+	}
+
+  &.active {
+	  &,
+	  &:hover,
+	  &:focus {
+	    color: $color-green;
+	  }
+	}
+
+}
+
+/* Text highlight/selection */
+// ask NguyenTran before disabling this again
+::-moz-selection { color: white; background: $color-danger; text-shadow: none; }
+::selection      { color: white; background: $color-danger; text-shadow: none; }
+
+/* Fullscreen */
+:-moz-full-screen     .icon-screen-full:before { content: "\e62f"; }
+:-webkit-full-screen  .icon-screen-full:before { content: "\e62f"; }
+:-ms-full-screen      .icon-screen-full:before { content: "\e62f"; }
+:fullscreen           .icon-screen-full:before { content: "\e62f"; }

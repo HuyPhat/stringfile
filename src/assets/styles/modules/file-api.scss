@@ -1,0 +1,158 @@
+.fileAPI {
+  @include transition(all .2s linear);
+  border: 2px dashed rgba(0, 0, 0, .1);
+  border-radius: $border-radius-lg;
+  min-height: 140px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+
+  &:before,
+  &:after {
+    @include transition(all .2s linear);
+    @include opacity(.5);
+  }
+
+  &:before {
+		font-family: 'icomoon';
+		content: "\e61b";
+		font-size: 60px;
+		display: block;
+  }
+
+  // &:after {
+		// content: 'Drag file here to upload';
+		// font-weight: bold;
+		// font-size: $font-size-lg;
+  // }
+
+  &:hover,
+  &.drag-hover {
+    border-color: rgba(0, 0, 0, .15);
+		background-color: rgba(0, 0, 0, .04);
+
+		&:before,
+    &:after {
+      @include opacity(1);
+    }
+  }
+
+  &.drag-hover {
+		// &:after {
+		// 	content: 'Drop it now';
+		// }
+    .drag {
+      display: none;
+    }
+    .drop {
+      display: block;
+      @include opacity(1);
+    }
+  }
+  &:hover .drop-box {
+    @include opacity(1);
+  }
+  span.drop, span.drag {
+    font-size: $font-size-lg;
+    @include opacity(.5);
+    display: block;
+    font-weight: bold;
+  }
+  span.drop {
+    display: none;
+  }
+
+  // Drop File
+  &.preview {
+
+    &:before,
+    &:after {
+      display: none !important;
+    }
+    .drag, .drop {
+      display: none;
+    }
+    .avatar {
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .title {
+      display: block;
+
+      strong {
+      	vertical-align: text-bottom;
+      	display: inline-block;
+	      max-width: 300px;
+	      @include wrap-text();
+      }
+
+      em {
+      	vertical-align: text-bottom;
+        color: $color-grey-l3;
+				margin-left: 10px;
+				font-size: $font-size-xs;
+      }
+    }
+
+    .upload-progress {
+		  width: 50%;
+		  height: 4px;
+		  background-color: $color-grey-l2;
+		  border-radius: $border-radius-lg;
+		  display: inline-block;
+	    position: relative;
+
+		  .upload-bar {
+				width: 0;
+				height: inherit;
+				display: block;
+				background-color: $color-green;
+				border-radius: $border-radius-lg;
+				@include transition(width .5s ease-out);
+
+				&.success, &.error {
+				  &:before {
+					position: absolute;
+					font-weight: bold;
+				  }
+				}
+
+				&.success {
+				  &:before {
+			        font-family: "icomoon";
+			        content: "\e61a";
+			        color: $color-green;
+			        font-size: 10px;
+							right: -20px;
+							top: -6px;
+				  }
+				}
+
+				&.error {
+				  background-color: $color-danger;
+				  max-width: 80%;
+
+				  &:before {
+			    	content: "\D7";
+			      color: $color-danger;
+			      font-size: 13px;
+						right: -15px;
+						top: -8px;
+				  }
+				}
+			}
+    }
+  }
+}
+
+// hide real input
+#selectFile {
+  display: none;
+}
+.empty-folder-wrap {
+  display: block;
+  height: 100%;
+}

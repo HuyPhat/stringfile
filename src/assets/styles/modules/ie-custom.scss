@@ -1,0 +1,11 @@
+// Bugs fixed for just > = IE 9
+// --------------------------------------------------
+
+.alert {
+	
+	&.old-browser {
+		border-radius: 0;
+		margin-bottom: 0;
+		border-top: none;
+	}
+}

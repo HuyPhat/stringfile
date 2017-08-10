@@ -1,0 +1,77 @@
+// Border-radius & Icon
+//---------------------------------------------------
+
+$border-radius-sm:   3px;
+$border-radius-base: 4px;
+$border-radius-lg:   6px;
+
+// Icon sizes for use in components
+$icon-normal:    15px;
+$icon-medium:    18px;
+$icon-large:     32px;
+$icon-navbar:    21px;
+
+// Typography
+//---------------------------------------------------
+
+$font-family-base:     "Lato", Helvetica, Arial, sans-serif;
+$font-family-demo:     "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-icon:     "icomoon";
+
+$font-size-base:       15px;
+$font-size-lg:         $font-size-base + 1;
+$font-size-sm:         $font-size-base - 1;
+$font-size-xs:         $font-size-base - 2;
+$font-size-xxs:        $font-size-base - 3;
+$font-size-xxxs:       $font-size-base - 4;
+
+// Color swatches
+//---------------------------------------------------
+
+$color-green:               #9dcb3b;
+$color-green-d1:            darken($color-green, 8%);
+
+$color-danger:              #ff6b6b; //#ed6657
+$color-warning:             #f3ba22;
+$color-blue:                #2f5e91;
+
+$color-navy:                #282c2f;
+$color-navy-l1:             lighten($color-navy, 15%); //#576066
+$color-navy-l2:             lighten($color-navy, 30%); //#6e7982
+$color-navy-l3:             lighten($color-navy, 60%); //#c0c5c9
+
+$color-grey:                #444444;
+$color-grey-l1:             lighten($color-grey, 70%); //#f6f6f6
+$color-grey-l2:             lighten($color-grey, 63%); //#e5e5e5
+$color-grey-l3:             lighten($color-grey, 55%); //#d0d0d0
+$color-grey-l4:             lighten($color-grey, 35%); //#9d9d9d
+
+// Buttons
+$btn-hover-bg:              mix($color-navy-l3, black, 90%);
+$btn-active-bg:             mix($color-navy-l3, black, 80%);
+
+$btn-primary-hover-bg:      mix($color-green, black, 90%);
+$btn-primary-active-bg:     mix($color-green, black, 80%);
+
+$btn-danger-hover-bg:       mix($color-danger, black, 90%);
+$btn-danger-active-bg:      mix($color-danger, black, 80%);
+
+$btn-warning-hover-bg:      mix($color-warning, black, 90%);
+$btn-warning-active-bg:     mix($color-warning, black, 80%);
+
+// File Icons
+$color-video:               #cfcd39;
+$color-excel:               #549f3b;
+$color-volume:              #ae47af;
+$color-photo:               #222b29;
+$color-text:                #1dcac8;
+$color-word:                #2564a9;
+$color-pdf:                 #cd3935;
+$color-power-point:         #e65618;
+
+// Columns width
+//---------------------------------------------------
+
+$navbar-width:      230px;
+$navbar-width-sm:   70px;
+$tabpanel-width:    310px;

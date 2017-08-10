@@ -1,0 +1,218 @@
+// Login Style
+//---------------------------------------------------
+
+.login {
+
+	// Background animation in Portrait mode
+	background-image: url(assets/images/png/login_horizontal_bg.png), url(assets/images/png/login_horizontal_bg_initial.jpg);	
+	
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+		background-image: url(assets/images/png/login_horizontal_bg@2x.png), url(assets/images/png/login_horizontal_bg_initial.jpg);	
+	}
+	
+	      background-repeat: no-repeat;
+	
+	        background-size: cover;
+	-webkit-background-size: cover;
+	   -moz-background-size: cover;
+
+	//.animation(animBackground 90s linear infinite);	
+
+	.container {
+		height: 100%;
+		overflow-y: auto;
+
+		.alert {
+			position: fixed;
+			z-index: 1;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  border-radius: 0;
+		}
+
+		.logo {
+			float: left;
+			width: 50%;
+			max-width: 300px;
+			margin: 150px auto 0;	
+			
+			@media (min-width: 1200px) {
+				margin-left: 100px;
+			}
+			
+			@media (max-width: 768px) {
+				float: none;
+				margin: 50px auto 30px;
+				height: auto;
+			}
+		}
+		
+		.login-form {
+			height: calc('100% - 150px');
+			float: right;
+			margin-top: 100px;
+			width: 400px;
+			overflow-x: hidden;
+			text-align: center;
+			word-wrap: break-word;
+			
+			@media (min-width: 1200px) {
+				margin-right: 100px;
+			}
+			
+			@media (max-width: 992px) {
+				width: 300px;
+			}
+			
+			@media (max-width: 768px) {
+				float: none;
+				height: 400px;
+				margin: 0 auto;
+				width: 400px;
+			}
+			
+			@media (max-width: 480px) {
+				width: 100%;
+			}
+			
+			.form-control {
+				background-color: transparent;
+				border-color: rgba(255, 255, 255, .3);
+				color: white;
+				
+				&:focus {
+					background-color: rgba(255, 255, 255, .2);
+			    @include box-shadow(none);
+			  }
+			}
+			
+			.avatar {
+				// center
+				left: 50%;
+				margin-left: -30px;  
+		    margin-bottom: 10px;		
+			}
+			
+			&, a { color: white; }
+			
+			.help-block {
+				background-color: rgba(255,255,255,.1);
+				border-radius: $border-radius-base;
+				padding: 10px;
+				margin-top: 30px;
+				font-size: $font-size-xs;
+				line-height: 1.5;
+				color: rgba(0,0,0,.6);
+				text-align: left;
+				
+				em { color: $color-green; }
+			}
+			
+			.hint {
+				color: rgba(0,0,0,.6);
+				font-size: $font-size-xs;
+				margin-top: 10px;
+				margin-bottom: 20px;
+				text-align: left;
+			}
+			
+			h1 {
+				font-size: 30px;
+				font-weight: 100;
+				margin-top: 0;
+				
+				@media (max-width: 992px) {
+					font-size: 26px;
+				}
+				
+				@media (max-width: 768px) {
+					display: none;
+				}
+			}
+					
+			ul {
+				list-style-type: none;
+				padding: 0;
+				margin: 0;				
+				
+				@include transition(all .7s cubic-bezier(0.7,0,0.3,1));
+				
+				&.signup { @include transform(translateX(0)); }
+				&.signin { @include transform(translateX(-500px)); }
+				&.forgot { @include transform(translateX(-1000px)); }			
+				
+				@media (max-width: 992px) {
+					&.signup { @include transform(translateX(0)); }
+					&.signin { @include transform(translateX(-400px)); }
+					&.forgot { @include transform(translateX(-800px)); }	
+				}
+				
+				@media (max-width: 768px) {
+					&.signup { @include transform(translateX(0)); }
+					&.signin { @include transform(translateX(-500px)); }
+					&.forgot { @include transform(translateX(-1000px)); }	
+				}
+				
+				@media (max-width: 480px) {
+					&.signup { @include transform(translateX(0)); }
+					&.signin { @include transform(translateX(calc(-100% - 50px))); }
+					&.forgot { @include transform(translateX(calc(-200% - 100px))); }	
+				}
+				
+				li {
+					position: absolute;
+					width: 100%;
+					
+					&:nth-child(2) { left: 500px; }	
+					&:nth-child(3) { left: 1000px; }
+					
+					@media (max-width: 992px) {						
+						&:nth-child(2) { left: 400px; }	
+						&:nth-child(3) { left: 800px; }
+					}
+					
+					@media (max-width: 768px) {						
+						&:nth-child(2) { left: 500px; }	
+						&:nth-child(3) { left: 1000px; }
+					}
+					
+					@media (max-width: 480px) {
+						&:nth-child(2) { left: calc(100% + 50px); }	
+						&:nth-child(3) { left: calc(200% + 100px); }
+					}												
+				} // <li>
+			} // <ul>	
+		}	// .login-form	
+		
+	}	// .container
+} // .login
+
+.login-linkedin {
+	margin-top: 10px;
+	display: block;
+	img {
+		max-width: 100%;
+		width: 100%;
+		height: 50px;
+	}
+}
+
+
+
+// Animation Effects
+// --------------------------------------------------
+
+// Webkit
+@-webkit-keyframes animBackground {
+  from { background-position: 0 0; }
+   50% { background-position: 100% 0; }
+    to { background-position: 0 0; }
+}
+
+// IE, Mozilla
+@keyframes animBackground {
+  from { background-position: 0 0; }
+   50% { background-position: 100% 0; }
+    to { background-position: 0 0; }
+}

@@ -1,0 +1,22 @@
+#ip-container {
+  .navbar {
+    height: 100%;
+    width: 230px;
+    padding-top: 20px;
+    z-index: 1;
+    position: fixed;
+    background-color: #202326;
+    .navbar-header {
+      float: none;
+      .navbar-brand {
+        background: url(assets/images/svg/logo.svg) no-repeat;
+        padding: 0;
+        width: 64px;
+        height: 64px;
+        position: relative;
+        margin-left: -32px;
+        left: 50%
+      }
+    }
+  }
+}

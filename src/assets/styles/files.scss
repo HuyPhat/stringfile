@@ -1,0 +1,412 @@
+.list-view {
+
+  @media (min-width: 768px) {
+
+    height: calc(100% - 120px); // - 120px header & breadcrumb
+
+    tbody, thead, & { display: block; }
+
+    tbody {
+      height: calc(100% - 52px); // - thead(52px)
+      overflow-y: auto;  // display scroll-bar
+
+      @media (min-width: 768px) and (max-width: 768px) {
+        height: 100%;
+      }
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1075px) {
+    float: left;
+    margin-top: 10px;
+    border-top: 1px solid #ddd;
+    height: calc(100% - 165px);
+  }
+
+  @media (min-width: 768px) and (max-width: 1180px) {
+    &.my-files {
+      float: left;
+      margin-top: 10px;
+      border-top: 1px solid #ddd;
+      height: calc(100% - 165px);
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 768px) {
+    margin-top: 0;
+  }
+
+  tr {
+
+    &:nth-child(odd) {
+      td {
+        background-color: #f9f9f9;
+      }
+    }
+
+    &:hover {
+      td {
+        background-color: #efefef;
+      }
+    }
+
+    td, th {
+      padding: 15px !important;
+
+      &:first-child {
+        padding-left: 20px !important;
+      }
+    }
+
+  .icon-info {
+    padding: 15px 0; // make tap area bigger
+    font-size: 20px;
+
+    @media (max-width: 959px) {
+      display: block;
+      font-size: 25px;
+      padding: 10px 0;
+    }
+  }
+
+    .icon-folder, .icon-folder-f {
+      font-size: $font-size-base + 9;
+      top: 1px;
+    }
+
+    .icon-video, .icon-excel, .icon-volume, .icon-photo, .icon-pdf, .icon-word, .icon-power-point, .icon-text {
+      top: 1px;
+      border: 1px solid rgba(0,0,0,.1);
+      border-radius: 20px;
+      padding: 10px;
+      @include transition(all .25s linear);
+    }
+
+    .icon-video  { @include  icon-variant($color-video, none); }
+    .icon-excel  { @include  icon-variant($color-excel, none); }
+    .icon-volume { @include  icon-variant($color-volume, none); }
+    .icon-photo  { @include  icon-variant($color-photo, none); }
+    .icon-text   { @include  icon-variant($color-text, none); }
+    .icon-word   { @include icon-variant($color-word, none); font-size: $font-size-lg; }
+    .icon-pdf    { @include icon-variant($color-pdf, none); font-size: $font-size-lg; }
+    .icon-power-point { @include icon-variant($color-power-point, none); }
+
+    @mixin icon-hover() {
+
+      .icon-video, .icon-excel, .icon-volume, .icon-photo, .icon-pdf, .icon-word, .icon-power-point, .icon-text {
+        border-color: transparent;
+      }
+
+      .icon-video  { @include icon-variant(white, $color-video); }
+      .icon-excel  { @include icon-variant(white, $color-excel); }
+      .icon-volume { @include icon-variant(white, $color-volume); }
+      .icon-photo  { @include icon-variant(white, $color-photo); }
+      .icon-text   { @include icon-variant(white, $color-text); }
+      .icon-word   { @include icon-variant(white, $color-word); }
+      .icon-pdf    { @include icon-variant(white, $color-pdf); }
+      .icon-power-point { @include icon-variant(white, $color-power-point); }
+
+    }
+
+    &:hover { @include icon-hover(); }
+  }
+
+  // Filter
+  //---------------------------------------------------
+
+  &.filter-all-files {
+
+    // temporary
+    th:nth-child(1) .checkbox { visibility: hidden; }
+    th:nth-child(4), th:nth-child(5) { color: $color-grey-l4; }
+
+    td, th {
+
+      &:nth-child(1) { width: 20px; } // checkbox
+      &:nth-child(2) { width: 80px; min-width: 80px; text-align: center; } // icons
+      &:nth-child(3) { width: 45%; max-width: 180px; } // file name
+      &:nth-child(4) { width: 15%; max-width: 100px; } // sender
+      &:nth-child(5) { width: 15%; max-width: 100px; } // my rights
+      &:nth-child(6) { width: 15%; max-width: 100px; 
+        // font-size: $font-size-xs; color: $color-grey-l4; 
+      } // last modified
+      &:nth-child(7) { width: 10%; max-width: 45px; } // info icon
+
+      @media (max-width: 1280px) {
+        &:nth-child(7) { display: table-cell; line-height: 1;}
+      }
+
+      @media (max-width: 959px) {
+          &:nth-child(5) { display: none; }
+      &:nth-child(6) { min-width: 125px; }
+      }
+
+      @media (max-width: 767px) {
+
+        &:nth-child(3) {
+          width: 100%;
+          a { font-weight: bold; }
+        }
+
+        &:nth-child(1),
+        &:nth-child(4),
+        &:nth-child(6) { display: none; }
+        &:nth-child(2) { min-width: 35px; width: 35px; padding: 0 0 0 15px !important; }
+        &:nth-child(7) { font-size: $font-size-base + 4; }
+      }
+    }
+    @keyframes fadeBackground {
+        from {background-color:#9dcb3b;}
+        to {background-color: transparent;}
+    }
+    &#list-file{
+      tr.focus td{
+        animation-name: fadeBackground;
+        animation-duration: 5s;
+      }
+    }
+  }
+
+  &.filter-sent-files {
+
+    tr {
+
+      &:first-child {
+
+        td {
+          font-weight: bold;
+          font-size: $font-size-sm !important;
+
+          @media (max-width: 767px) {
+            display: none;
+          }
+        }
+      }
+
+      td {
+
+        @media (min-width: 767px) {
+          font-size: $font-size-sm;
+        }
+
+        &:nth-child(2) {
+          width: 100%;
+          max-width: 100px; // Trick for all browsers, especially IE
+        }
+
+        &:nth-child(5) { max-width: 130px; } // Fixed when long name
+
+        &:nth-child(5), &:nth-child(6) { text-align: center; }
+
+        &:nth-child(3), &:nth-child(4), &:nth-child(7), &:nth-child(8), &:nth-child(9) {
+          text-align: right;
+          color: $color-grey-l4;
+          font-size: $font-size-xs;
+        }
+
+        @media (max-width: 1300px) {
+          &:nth-child(3) { display: none; }
+        }
+
+        @media (max-width: 1200px) {
+          &:nth-child(4), &:nth-child(5) { display: none; }
+        }
+
+        @media (max-width: 767px) {
+          &:nth-child(6), &:nth-child(7), &:nth-child(8), &:nth-child(9) { display: none; }
+        }
+      }
+    }
+  }
+
+  &.filter-received-files {
+
+    @extend .filter-sent-files;
+
+    td {
+      &:nth-child(5), &:nth-child(10) { display: none; }
+    }
+  }
+
+  //---------------------------------------------------
+
+  a { position: relative; } // Important! Positioning to unread, push-update & FCS
+
+  .folder-items {
+    font-family: $font-family-demo;
+    color: $color-grey-l4;
+    font-size: $font-size-xs;
+    margin-left: 10px;
+  }
+
+  .modified {
+     color: $color-grey-l4;
+    font-size: $font-size-xs;
+    display: block;
+
+    @media (min-width: 767px) {
+      display: none;
+    }
+  }
+
+  .icon-favorite {
+
+    &.empty:before {
+      content: "\e60d";
+      color: #ddd;
+      font-size: $icon-medium;
+    }
+
+    &.checked:before {
+      content: "\e60c";
+      color: $color-warning;
+      font-size: $icon-medium;
+    }
+
+    &.hidden {
+      display: block !important;
+    }
+  }
+
+  .unread {
+    font-weight: bold;
+  }
+
+  span.unread {
+    position: absolute;
+    left: 0;
+    top: 16px;
+    width: 8px;
+    height: 18px;
+
+    &:before {
+      content: "\25CF";
+      color: #2f5f92;
+      font-size: $font-size-xs;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .fcs {
+
+    &:after {
+      font-family: $font-family-demo;
+      content: "FCS";
+      line-height: normal;
+      color: white;
+      background-color: black;
+      font-size: ($font-size-base - 8);
+      font-weight: bold;
+      padding: 2px 3px;
+      letter-spacing: 1px;
+      border-radius: $border-radius-base;
+      position: absolute;
+      top: -12px;
+      left: 0;
+    }
+
+    &.push-update {
+
+      &:before {
+        left: 30px;
+      }
+    }
+  }
+
+  span.push-update {
+    position: absolute;
+    left: 15px;
+    top: 0px;
+    width: 16px;
+    height: 21px;
+
+    &:before {
+      content: "\e615";
+      font-family: $font-family-icon;
+      font-size: $font-size-base;
+      font-weight: normal;
+      color: #000;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  label {
+    &.checkbox {
+      margin-bottom: 0;
+      padding-left: 0;
+    }
+  }
+
+  .file-name {
+    max-width: calc(100% - 60px);
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: break-word;
+    vertical-align: bottom;
+  }
+
+  // Hide the Sender Column for My-Fyles Section as doesn't exist the Sender in that case
+  // &.my-files, &.update-to-push-files {
+  //   th:nth-child(4), th:nth-child(5) {
+  //     display: none;
+  //   }
+  //   td:nth-child(4), td:nth-child(5) {
+  //     display: none;
+  //   }
+  //   th.file-info, td.file-info {
+  //     width: 95%;
+  //   }
+  // }
+
+  &.received-files {
+    @media (min-width: 768px) and (max-width: 870px) {
+      td:nth-child(4), th:nth-child(4) {
+        display: none;
+      }
+    }
+  }
+
+  .react-bs-table-container {
+    height: 100%;
+    .react-bs-container-body {
+      height: 100%;
+      overflow-y: auto;
+      .table.list-view.my-files {
+        height: 100%;
+      }
+    }
+    @media (max-width: 1180px) and (min-width: 768px) {
+      .react-bs-container-body {
+        float: left;
+      }
+      .table.list-view.my-files {
+        margin-top: 0;
+        border-top: none;
+      }
+    }
+  } //.react-table-container
+} //.list-view
+#stringFileBtnWrapper {
+  position: absolute;
+  bottom: 2em;
+  right: 2.5em;
+  ul {
+    left: -100px;
+  }
+}
+#stringFileBtn {
+  bottom: 1em;
+  right: 1em;
+  width: 45px;
+  height: 45px;
+  border-radius: 30px;
+  span {
+    margin-right: 0;
+  }
+}

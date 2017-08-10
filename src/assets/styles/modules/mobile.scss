@@ -1,0 +1,45 @@
+.mobile {
+
+	// General
+	//---------------------------------------------------
+
+	.instal-desktop-app { display: none; }
+
+	.fileAPI {
+
+		&:after {
+			content: 'Select a file to upload';
+	  }
+
+	}
+
+	// track-views.LESS
+	//---------------------------------------------------
+
+	.modal.track-views { -webkit-overflow-scrolling: auto; } // override bootstrap mobile
+
+	.track-views {
+		.modal-content {
+			@include transition(none); // Remove toggle dark mode effect
+		}
+	}
+
+	// viewer.LESS
+	//---------------------------------------------------
+
+	.viewer-box {
+		.modal-content {
+			.modal-body, .modal-footer {
+				@include transition(none); // Remove toggle dark mode effect
+			}
+		}
+	}
+
+	// Forms.LESS
+	//---------------------------------------------------
+
+	.input-group {
+		display: inline-table !important; // override bootstrap mobile BUT still do not know WHY
+	}
+
+} // .mobile

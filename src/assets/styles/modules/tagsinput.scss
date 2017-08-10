@@ -1,0 +1,215 @@
+.tagsinput {
+  border: 1px solid $color-grey-l2;
+  border-radius: $border-radius-base;
+  padding: 10px 5px 5px 10px;
+  display: inline-block;
+  width: 100%;
+  //define scroll height
+  max-height: 122px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  *, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .host {
+    position: inherit;
+    button {
+      display: block;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: none;
+      text-align: left;
+      width: 100%;
+    }
+  }
+  .tags {
+    border: none;
+    box-shadow: none;
+    &.focused {
+      box-shadow: none;
+    }
+    .input {
+      float: none;
+    }
+  }
+  // Tag default
+  .tag {
+    border-radius: $border-radius-base;
+    background-color: $color-navy-l2;
+    color: white;
+    font-size: $font-size-sm;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    margin-right: 5px;
+    padding: 2px 8px;
+    padding-right: 12px;
+    position: relative;
+    vertical-align: middle;
+    word-break: break-word;
+
+    //.transition(all .25s linear);
+
+    &:hover {
+      background-color: $color-danger;
+      .tagsinput-remove-link {
+        @include opacity(1); display: none\9; // Opacity fallback for IE
+      }
+    }
+  }
+  .tag-list {
+    list-style: none;
+    padding: 0;
+    display: inline-block;
+    vertical-align: top;
+    li {
+      display: inline-block;
+      &.tag-item {
+        background: none;
+        line-height: 20px;
+        margin: 0;
+        border: none;
+        margin-bottom: 2px;
+        padding: 0;
+        height: auto;
+      }
+    }
+  }
+
+  // Tag remove
+  .tagsinput-remove-link {
+    cursor: pointer;
+    position: absolute;
+    top: -2px;
+    right: 1px;
+    bottom: 0;
+    left: 0;
+
+    text-align: right;
+
+    z-index: 2; // Click to remove tag
+    @include opacity(0); display: none\9; // Opacity fallback for IE
+
+    &:before {
+      color: white;
+      content: "\D7";
+      font-weight: bold;
+      font-size: 15px;
+    }
+  }
+
+  // Button add recipient
+  .tagsinput-add-container {
+    vertical-align: middle;
+    display: inline-block;
+
+    .tagsinput-add {
+      background-color: $color-navy-l3;
+      border-radius: $border-radius-base;
+      cursor: pointer;
+      display: inline-block;
+      padding: 1px 5px;
+      margin: 0 5px 5px 0;
+      @include transition(all .25s linear);
+
+      &:hover {
+        background-color: $color-green;
+        color: white;
+      }
+
+      &:before {
+        font-family: $font-family-icon;
+        content: "\e620";
+        font-size: 20px;
+        -webkit-font-smoothing: antialiased; // Important
+      }
+    }
+  }
+  .tagsinput-add {
+      a.icon-add-user {
+        font-size: 25px;
+    }
+  }
+
+  // Input Name
+  input {
+    border: none;
+    border-radius: $border-radius-base;
+    outline: none;
+    color: $color-navy-l2 !important;
+    font-size: $font-size-xs;
+    font-weight: bold;
+    padding: 6px;
+    vertical-align: top;
+    // max-width: 60%;
+
+
+    &:focus { background-color: $color-grey-l2; }
+
+    .tags_clear {
+      clear: both;
+      width: 100%;
+      height: 0;
+    }
+    @media (min-width: 320px) and (max-width: 480px) {
+      width: 135px !important;
+    }
+  }
+
+  // Error
+  .not_valid {
+    background-color: $color-danger !important;
+    color: white !important;
+  }
+}
+
+// Bootstrap auto-complete re-style
+.ui-autocomplete {
+	list-style-type: none;
+  background-color: white;
+  border: 1px solid $color-grey-l2;
+  border-radius: $border-radius-base;
+  padding: 10px 0;
+  width: calc(100% - 120px);
+  z-index: 9;
+  @include box-shadow(0 0px 7px rgba(0,0,0,.15));
+
+  // Scrollable
+  max-height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden; // Fixed Firefox
+  // Positioning
+  position: absolute;
+  left: 60px !important;
+  margin-top: 15px;
+  li {
+    cursor: pointer;
+    color: $color-navy-l2;
+    padding: 10px;
+    margin: 0 10px;
+    font-size: $font-size-sm;
+
+		&.ui-state-focus, &:hover, &.selected {
+		  color: white;
+		  background-color: $color-navy-l2;
+		  border-radius: $border-radius-base;
+		}
+
+		span {
+			display: block;
+			color: $color-grey-l3;
+			font-size: $font-size-xs;
+		}
+
+  }
+}
+
+// Hide message auto-complete
+.ui-helper-hidden-accessible {
+  display: none;
+}

@@ -1,0 +1,83 @@
+.switch {
+  border-radius: 30px;
+  overflow: hidden;
+  width: 70px;
+  position: relative;
+  top: -4px;
+
+  &.deactivate {
+    @include opacity(.4);
+
+    label, span {
+      cursor: default;
+    }
+  }
+
+  > div {
+    width: 110px;
+    position: relative;
+
+    &.switch-animate {
+      @include transition(left .25s ease-out);
+    }
+
+    &.switch-off {
+      left: -35px;
+
+      label { border-color: $color-danger; }
+    }
+
+    &.switch-on {
+      left: 0;
+      width: 112px; // Prevent bottom right corner red background
+    }
+  }
+
+  input[type=checkbox] {
+    //display: none;
+    margin-top: 0;
+
+    //Phap Suggestion
+    position: absolute;
+    @include opacity(0);
+    display: block;
+  }
+
+  span {
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 35px;
+    float: left;
+    height: 35px;
+    width: 50%;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    [class^="icon-"] {
+      color: white;
+    }
+
+    &.switch-left {
+      border-radius: 30px 0 0 30px;
+      background-color: $color-green;
+    }
+
+    &.switch-right {
+      border-radius: 0 30px 30px 0;
+      background-color: $color-danger;
+    }
+  }
+
+  label {
+    cursor: pointer;
+    border: 5px solid $color-green;
+    border-radius: 50%;
+    background-color: white;
+    float: left;
+    height: 35px;
+    width: 35px;
+    margin: 0 -20px;
+    position: relative;
+    margin-bottom: 0!important;
+  }
+}

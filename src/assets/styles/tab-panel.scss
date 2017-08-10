@@ -1,0 +1,358 @@
+// Tab Info Panel
+// --------------------------------------------------
+
+.tab-panel {
+	float: right;
+	height: 100%;
+	background-color: white;
+	border-left: 1px solid #ddd;
+	overflow-x: hidden; // Lock Horizontal Scrollbar
+	display: none; // Trick !important
+	width: 320px;
+
+	.tab-content {
+		height: calc(100% - 42px);
+		overflow-y: auto;
+
+		// Recipients Tab
+    ul {
+			list-style-type: none;
+			padding-left: 0;
+			margin-bottom: 0;
+
+			&.hide-inactive {
+
+			  .inactive {
+				  display: none;
+			  }
+		  }
+
+      li {
+        padding: 12px 20px;
+        margin: 10px 0;
+        height: 60px;
+        position: relative;
+        overflow-y: hidden;
+
+        // Text info
+        .info {
+        	position: relative;
+        	z-index: 1;
+        	width: 200px;
+
+        	p {
+        	  margin-left: 55px;
+          	margin-bottom: 0;
+						font-size: $font-size-xs;
+						@include wrap-text();
+
+						&:first-of-type { font-weight: bold; }
+
+					}
+        }
+
+        // Action icons
+        .action {
+        	@include transition(height .2s ease-in-out);
+	        background-color: $color-danger;
+	        position: absolute;
+	        top: 0;
+	        left: 0;
+	        width: 100%;
+	        height: 0;
+
+					a {
+						float: right;
+						line-height: 4;
+						margin-right: 20px;
+          	display: none;
+						@include transform(translateY(-100%));
+
+						&:nth-child(3) { clear: both; } // Trick to drop icon into 2nd line
+
+					}
+        }
+
+        &:hover {
+	      	background-color: $color-grey-l2;
+
+	      	.action a { display: block }
+
+        }
+
+        // Delete State. Class to be placed on a <li> tag
+				&.delete {
+
+        	.info {
+
+	      		p { color: darken($color-danger, 40%); }
+						.avatar { @include box-shadow(0 0 0 4px rgba(0, 0, 0, .2)); }
+
+					}
+
+					.action {
+			    	height: 100%;
+
+			    	a {
+			    		display: block;
+			    		color: darken($color-danger, 40%);
+			    		@include transform(translateY(0));
+
+							&:hover { color: white;	}
+			    	}
+					}
+
+					&.inactive {
+						.info {
+		      		p { color: inherit; }
+							.avatar { box-shadow: none; }
+						}
+					}
+				}
+
+				//inactive
+				&.inactive {
+				  color: $color-grey-l3;
+				  border-right: 3px solid $color-warning;
+
+				  span.avatar {
+				  	color: rgba(0,0,0,.2);
+				  	background-color: rgba(0,0,0,.1);
+				  }
+
+				  &:hover { background-color: transparent; }
+				  .action { display: none; }
+
+			  }
+
+      } // <li>
+    } // <ul>
+
+    // Button
+		.btn {
+			//margin-bottom: 20px;
+			//width: 100%;
+			//border-radius: 0;
+		}
+
+		.btn-block {
+			border-radius: 0;
+		}
+
+		// No Recipients
+		.icon-user {
+			&.no-recipient {
+				display: block;
+				margin: 3em auto;
+				text-align: center;
+
+				&:before, &:after {
+					display: block;
+					color: $color-grey-l2;
+				}
+
+				&:before {
+					font-size: 6em;
+				}
+
+				&:after {
+					margin-top: 10px;
+					font-family: $font-family-base;
+					content: "No Recipients";
+					font-weight: bold;
+				}
+			}
+		}
+
+  } // .tab-content
+
+  &.expand, &.collapse { display: block; } // Trick !important
+
+  &.expand {
+	  @include animation(animExpandPanelDown .8s cubic-bezier(0.7,0,0.3,1) forwards);
+  }
+
+  &.collapse {
+	  @include animation(animCollapsePanelUp .8s cubic-bezier(0.7,0,0.3,1) forwards);
+  }
+
+  // Off-Canvas. Always go with <div class="off-canvas-mask"> after.
+  &.off-canvas {
+		position: fixed;
+		z-index: 5;
+		top: 0;
+		right: 0;
+		width: 320px;
+		// border-left: none;
+		-webkit-overflow-scrolling: touch;
+
+		@media (max-width: 767px) {
+			top: 54px;
+			width: 100%;
+
+			.tab-content { height: calc(100% - 92px); }
+	  }
+
+	  &.expand {
+			@include animation(animExpandPanelLeft .8s cubic-bezier(0.7,0,0.3,1) forwards);
+
+			@media (max-width: 767px ) {
+				@include animation(animExpandPanelUp .8s cubic-bezier(0.7,0,0.3,1) forwards);
+			}
+	  }
+
+	  &.collapse {
+			@include animation(animCollapsePanelRight  .5s cubic-bezier(0.7,0,0.3,1) forwards);
+
+			@media (max-width: 767px ) {
+				@include animation(animCollapsePanelDown .5s cubic-bezier(0.7,0,0.3,1) forwards);
+			}
+	  }
+  }
+
+	@media (max-width: 1430px) {
+		//@extend .off-canvas; // AUTO tranforms
+		position: fixed;
+		z-index: 3;
+		top: 0;
+		right: 0;
+		width: 310px;
+		// border-left: none;
+	}
+	@media (max-width: 767px ) {
+		top: 50px;
+		width: 100%;
+		z-index: 6;
+
+		.table {
+			margin-bottom: 50px;
+		}
+	}
+	@media (min-width: 1430px ) {
+		position: absolute;
+		right: 0;
+	}
+
+} // .tab-panel
+
+// Off-Canvas Mask
+// Tab Panel will be tranformed to off-canvas while on mobile view OR not enough space on desktop's small screen size.
+// --------------------------------------------------
+
+.off-canvas-mask {
+	@include transition(opacity .2s linear);
+	background-color: $color-navy;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	cursor: pointer;
+
+	.tab-panel + & {
+		@media (min-width: 1430px) {
+			display: none;
+		}
+	}
+
+	// "X" icon
+	&:before {
+		@include transition(all .2s linear);
+		font-family: $font-family-icon;
+		content: "\e619";
+		color: black;
+		font-size: $font-size-base;
+		line-height: normal;
+		border: 2px solid black;
+		border-radius: 50%;
+		padding: 10px;
+		position: absolute;
+		top: 20px;
+		right: 335px;
+
+		:hover & {
+			color: white;
+			border-color: white;
+		}
+
+		@media (max-width: 767px) {
+			top: 6px;
+			right: 50%;
+			margin-right: -20px;
+			color: white;
+			border-color: white;
+		}
+	}
+
+	&.in { @include opacity(0.9); }
+
+	@media (max-width: 767px) {
+		z-index: 4;
+	}
+}
+
+// Animation Effects
+// --------------------------------------------------
+
+// Webkit
+@-webkit-keyframes animExpandPanelDown {
+  from { @include opacity(0); @include transform(translate3d(0,-100%,0)); }
+    to { @include opacity(1); @include transform(translate3d(0,0,0)); }
+}
+
+@-webkit-keyframes animCollapsePanelUp {
+  from { @include opacity(1); @include transform(translate3d(0,0,0));     }
+    to { @include opacity(0); @include transform(translate3d(0,-100%,0)); }
+}
+
+@-webkit-keyframes animExpandPanelLeft {
+  from { @include transform(translate3d(100%,0,0)); }
+    to { @include transform(translate3d(0,0,0)); }
+}
+
+@-webkit-keyframes animCollapsePanelRight {
+  from { @include transform(translate3d(0,0,0)); }
+    to { @include transform(translate3d(100%,0,0)); }
+}
+
+@-webkit-keyframes animExpandPanelUp {
+  from { @include transform(translate3d(0,100%,0)); }
+    to { @include transform(translate3d(0,0,0)); }
+}
+
+@-webkit-keyframes animCollapsePanelDown {
+  from { @include transform(translate3d(0,0,0)); }
+    to { @include transform(translate3d(0,100%,0)); }
+}
+
+// IE, Mozilla
+@keyframes animExpandPanelDown {
+  from { @include opacity(0); @include transform(translate3d(0,-100%,0)); }
+    to { @include opacity(1); @include transform(translate3d(0,0,0)); }
+}
+
+@keyframes animCollapsePanelUp {
+  from { @include opacity(1); @include transform(translate3d(0,0,0));     }
+    to { @include opacity(0); @include transform(translate3d(0,-100%,0)); }
+}
+
+@keyframes animExpandPanelLeft {
+  from { @include transform(translate3d(100%,0,0)); }
+    to { @include transform(translate3d(0,0,0)); }
+}
+
+@keyframes animCollapsePanelRight {
+  from { @include transform(translate3d(0,0,0)); }
+    to { @include transform(translate3d(100%,0,0)); }
+}
+
+@keyframes animExpandPanelUp {
+  from { @include transform(translate3d(0,100%,0)); }
+    to { @include transform(translate3d(0,0,0)); }
+}
+
+@keyframes animCollapsePanelDown {
+  from { @include transform(translate3d(0,0,0)); }
+    to { @include transform(translate3d(0,100%,0)); }
+}

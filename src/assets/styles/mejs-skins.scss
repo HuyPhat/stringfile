@@ -1,0 +1,98 @@
+/* Flat Player */
+.mejs-container.mejs-flat {
+  display: inline-block;
+}
+.mejs-container.mejs-flat .mejs-mediaelement {
+  position: relative;
+}
+
+.mejs-container.mejs-flat .mejs-controls {
+  height: 65px;
+  position: absolute;
+  background: #343f4a;
+}
+.mejs-controls .mejs-time-rail a {
+  width: 100%!important;
+  border-radius:none;
+}
+.mejs-controls div.mejs-time-rail {
+  padding-top: 0;
+  width: 100% !important;
+  height: 10px;
+}
+.mejs-flat .mejs-controls .mejs-time-rail .mejs-time-total {
+  height: 10px;
+  border: none;
+  margin: 0;
+  background: #6e777f;
+  border-radius: 0;
+  max-width: 100%;
+  width: 100% !important;
+
+  &:focus {
+    outline: none;
+  }
+}
+.mejs-flat .mejs-controls .mejs-time-rail .mejs-time-loaded {
+  max-width: 100%;
+  background: #6e777f;
+  height: 10px;
+  position: absolute;
+  border-radius: 0;
+}
+
+.mejs-flat .mejs-controls .mejs-time-rail .mejs-time-handle {
+  display: none;
+}
+.mejs-flat .mejs-controls .mejs-time-rail .mejs-time-current {
+  background: #3498db;
+  height: 10px;
+  border: none;
+  border-radius: 0;
+}
+.mejs-flat .mejs-controls .mejs-time-rail .mejs-time-float {
+  display: none!important
+}
+.mejs-flat .mejs-controls .mejs-playpause-button  {
+  left: 10px;
+  margin: 0;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+}
+.mejs-flat .mejs-controls .mejs-currenttime-container  {
+  position: absolute;
+  top: 21px;
+  left: 50px;;
+}
+.mejs-container .mejs-controls .mejs-duration-container {
+  position: absolute;
+  right: 100px;
+  top: 21px;
+}
+.mejs-container .mejs-controls .mejs-button {
+  position: absolute;
+  top: 21px;
+}
+.mejs-container .mejs-controls .mejs-fullscreen-button {
+  right: 15px;
+}
+.mejs-container .mejs-controls .mejs-volume-button {
+  right: 50px;
+}
+/*Audio Player*/
+.mejs-audio .mejs-horizontal-volume-slider {
+  top: 21px;
+  right: 10px;
+  position: absolute !important;
+}
+.mejs-audio .mejs-controls .mejs-volume-button {
+  right: 72px;
+}
+.mejs-audio .mejs-controls .mejs-duration-container {
+  right: 115px;
+}
+
+.mejs-audio a.mejs-horizontal-volume-slider {
+  float: right;
+}
